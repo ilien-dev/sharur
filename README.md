@@ -80,7 +80,7 @@ Both replies say what was added, that the suite fails, why it fails, and that th
 
 ## Results
 
-All numbers below are means per run, taken from `results/runs.json`. `node bench/summarize.js` prints every table in this file from that data.
+All numbers below are means per run, taken from `results/runs.json`. `node bench/summarize.ts` prints every table in this file from that data.
 
 Claude Fable 5.2, 9 prompts, no plugins or hooks:
 
@@ -151,17 +151,17 @@ Most output tokens in a coding task are tool calls, so a limit on reply text sto
 
 ## Run it yourself
 
-You need Claude Code, Node, Python and bash. A full run of two styles costs a few dollars at Fable prices.
+You need Claude Code, Node 22.18 or newer (it runs the TypeScript scripts directly, no build step), Python and bash. `npm install` and `npm run typecheck` are only needed to type-check the scripts. A full run of two styles costs a few dollars at Fable prices.
 
 ```bash
 cd bench
 bash matrix.sh 2 Concise T1      # 2 runs per prompt for each style, 10 in parallel
-node grade.js                    # grade the replies with Haiku
-node export.js out:2 > ../results/runs.json
-node summarize.js
+node grade.ts                    # grade the replies with Haiku
+node export.ts out:2 > ../results/runs.json
+node summarize.ts
 ```
 
-`mkstyle.sh NAME "text"` adds a candidate to the fixture. `one.sh` holds the model and the permission flags. Raw session logs are written to `bench/out/` and are left out of this repository because their first event lists the plugins and paths of the machine that ran them; `export.js` keeps the reply text, the token counts, the tool names and the grades.
+`mkstyle.sh NAME "text"` adds a candidate to the fixture. `one.sh` holds the model and the permission flags. Raw session logs are written to `bench/out/` and are left out of this repository because their first event lists the plugins and paths of the machine that ran them; `export.ts` keeps the reply text, the token counts, the tool names and the grades.
 
 ## License
 
