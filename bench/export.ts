@@ -1,21 +1,26 @@
 // Turns raw `claude -p --output-format stream-json` logs into results/runs.json.
 // Raw logs are not published: their init event lists the local machine's paths and plugins.
-// usage: node export.js <outDir>[:round] ... > runs.json
-const fs = require('fs'), path = require('path'), { execSync } = require('child_process');
-const runs = [];
+// usage: node export.ts <outDir>[:round] ... > runs.json
+import fs from 'node:fs';
+import path from 'node:path';
+import { execSync } from 'node:child_process';
+import { events, type ResultEvent, type Run } from './types.ts';
+
+const here = import.meta.dirname;
+const runs: Run[] = [];
 for (const arg of process.argv.slice(2)) {
-  const [d, round] = arg.split(':'); const dir = path.resolve(__dirname, d);
+  const [d, round] = arg.split(':'); const dir = path.resolve(here, d);
   for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.jsonl'))) {
     const m = f.match(/^(full-)?(.+)_p(\d+)_r(\d+)\.jsonl$/); if (!m) continue;
-    let reply = '', tools = [], res = null;
-    for (const l of fs.readFileSync(path.join(dir, f), 'utf8').split('\n')) {
-      if (!l.trim()) continue; let j; try { j = JSON.parse(l) } catch { continue }
+    let reply = '', res: ResultEvent | null = null;
+    const tools: string[] = [];
+    for (const j of events(fs.readFileSync(path.join(dir, f), 'utf8'))) {
       if (j.type === 'assistant') for (const c of j.message.content) { if (c.type === 'text') reply += c.text + '\n'; if (c.type === 'tool_use') tools.push(c.name) }
       if (j.type === 'result') res = j;
     }
     if (!res) continue;
     reply = reply.trim();
-    const r = {
+    const r: Run = {
       round: round || null, env: m[1] ? 'full' : 'clean', model: Object.keys(res.modelUsage || {})[0] || null,
       style: m[2], prompt: +m[3], rep: +m[4],
       words: reply.split(/\s+/).filter(Boolean).length, chars: reply.length,
@@ -25,12 +30,15 @@ for (const arg of process.argv.slice(2)) {
       grade: null, task_ok: null, reply,
     };
     const g = path.join(dir, f.replace('.jsonl', '.grade.json'));
-    if (fs.existsSync(g)) r.grade = JSON.parse(fs.readFileSync(g));
+    if (fs.existsSync(g)) r.grade = JSON.parse(fs.readFileSync(g, 'utf8'));
     // Objective checks on the files the run left behind (only where the run directory still exists).
-    const rd = path.join(__dirname, 'runs', f.replace('.jsonl', ''));
+    const rd = path.join(here, 'runs', f.replace('.jsonl', ''));
     if (round !== '1' && fs.existsSync(rd)) {
-      const rf = n => { try { return fs.readFileSync(path.join(rd, n), 'utf8') } catch { return '' } };
-      const sh = c => { try { return execSync(c, { cwd: rd, stdio: ['ignore', 'pipe', 'ignore'] }).toString() } catch (e) { return (e.stdout || '').toString() } };
+      const rf = (n: string) => { try { return fs.readFileSync(path.join(rd, n), 'utf8') } catch { return '' } };
+      const sh = (c: string) => {
+        try { return execSync(c, { cwd: rd, stdio: ['ignore', 'pipe', 'ignore'] }).toString() }
+        catch (e) { return String((e as { stdout?: Buffer }).stdout ?? '') }
+      };
       if (r.prompt === 2) r.task_ok = sh('python test_calc.py').includes('ok');
       if (r.prompt === 4) r.task_ok = /def multiply/.test(rf('calc.py')) && /multiply/.test(rf('test_calc.py'));
       if (r.prompt === 11) { const a = rf('calc.py') + rf('test_calc.py'); r.task_ok = /def mean/.test(a) && !/average/.test(a) }
@@ -38,5 +46,5 @@ for (const arg of process.argv.slice(2)) {
     runs.push(r);
   }
 }
-runs.sort((a, b) => (a.round + a.env + a.style).localeCompare(b.round + b.env + b.style) || a.prompt - b.prompt || a.rep - b.rep);
+runs.sort((a, b) => `${a.round}${a.env}${a.style}`.localeCompare(`${b.round}${b.env}${b.style}`) || a.prompt - b.prompt || a.rep - b.rep);
 process.stdout.write(JSON.stringify(runs, null, 1));

@@ -1,18 +1,22 @@
-// usage: node grade.js  -> grades every out/*.jsonl lacking out/*.grade.json
-const fs = require('fs'), path = require('path'), { spawn } = require('child_process');
-const dir = path.join(__dirname, 'out'), rub = JSON.parse(fs.readFileSync(path.join(__dirname, 'rubrics.json')));
-const prompts = fs.readFileSync(path.join(__dirname, 'prompts.txt'), 'utf8').split('\n');
-const gdir = path.join(__dirname, 'grader'); fs.mkdirSync(gdir, { recursive: true });
-const jobs = [];
+// usage: node grade.ts  -> grades every out/*.jsonl lacking out/*.grade.json
+import fs from 'node:fs';
+import path from 'node:path';
+import { spawn } from 'node:child_process';
+import { events } from './types.ts';
+
+const here = import.meta.dirname;
+const dir = path.join(here, 'out');
+const rub: Record<string, string[]> = JSON.parse(fs.readFileSync(path.join(here, 'rubrics.json'), 'utf8'));
+const prompts = fs.readFileSync(path.join(here, 'prompts.txt'), 'utf8').split('\n');
+const gdir = path.join(here, 'grader'); fs.mkdirSync(gdir, { recursive: true });
+const jobs: { g: string; q: string }[] = [];
 for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.jsonl'))) {
   const m = f.match(/^(.+)_p(\d+)_r(\d+)\.jsonl$/); if (!m || !rub[m[2]]) continue;
   const g = path.join(dir, f.replace('.jsonl', '.grade.json')); if (fs.existsSync(g)) continue;
   let text = '';
-  for (const l of fs.readFileSync(path.join(dir, f), 'utf8').split('\n')) {
-    if (!l.trim()) continue; let j; try { j = JSON.parse(l) } catch { continue }
+  for (const j of events(fs.readFileSync(path.join(dir, f), 'utf8')))
     if (j.type === 'assistant') for (const c of j.message.content) if (c.type === 'text') text += c.text + '\n';
-  }
-  const q = `A developer asked a coding assistant: "${prompts[m[2] - 1]}"
+  const q = `A developer asked a coding assistant: "${prompts[+m[2] - 1]}"
 The assistant did the work and replied with ONLY this text:
 <reply>
 ${text.trim()}
@@ -26,10 +30,10 @@ Output ONLY JSON: {"criteria":[true,...],"clear":true}`;
   jobs.push({ g, q });
 }
 let i = 0;
-function next() {
+function next(): void {
   if (i >= jobs.length) return; const { g, q } = jobs[i++];
   const p = spawn('claude -p --model haiku --setting-sources project --no-session-persistence --system-prompt "You are a strict grader. Output only JSON."', { shell: true, cwd: gdir });
-  let o = ''; p.stdout.on('data', d => o += d);
+  let o = ''; p.stdout.on('data', (d: Buffer) => o += d);
   p.on('close', () => { const m = o.match(/\{[\s\S]*\}/); if (m) try { JSON.parse(m[0]); fs.writeFileSync(g, m[0]) } catch { } next() });
   p.stdin.end(q);
 }
