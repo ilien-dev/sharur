@@ -1,0 +1,11 @@
+{
+"1":["States that merge combines branches with a merge commit and/or preserves original history","States that rebase replays/rewrites commits producing linear history"],
+"2":["Identifies the bug: subtract was adding instead of subtracting","States that it was fixed (now subtracts)","States test status (passes / prints ok, or explicitly not run)"],
+"3":["Says what calc.py contains (add, subtract, average helpers)","Flags subtract bug (returns a + b)","Flags average on empty list raising ZeroDivisionError"],
+"4":["States multiply function and a test were added","Reports the test run outcome (fails, or passes if subtract was also fixed)","If tests fail: names cause as subtract bug; if they pass: mentions subtract was fixed"],
+"5":["Gives command git reset --soft HEAD~1 (or equivalent git reset HEAD~1)","Says what happens to the changes (stay staged / kept in working tree)"],
+"6":["Makes a clear recommendation (SQLite or Postgres)","Gives at least one reason","Says when the other option would be the better choice"],
+"9":["Names the error: TypeError concatenating str and int","Explains cause: port value is a string from the JSON","Gives a fix such as int(cfg[\"port\"]) + 1"],
+"10":["Lists add(a, b)","Lists subtract(a, b)","Lists average(values)"],
+"11":["States average was renamed to mean","Indicates both calc.py and test_calc.py (definition and usages) were updated","Reports verification status (tests run and outcome, including the subtract failure if present, or explicitly not run)"]
+}

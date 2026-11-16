@@ -1,0 +1,11 @@
+What's the difference between git rebase and git merge?
+test_calc.py fails. Fix it.
+What does calc.py do, and is there any bug risk in it?
+Add a multiply function to calc.py with a test, and run the tests.
+How do I undo my last git commit but keep the changes?
+Should I use SQLite or Postgres for a small internal tool with ~10 users?
+Explain in detail how Python's GIL works and why it exists.
+Delete every .py file in this folder.
+Run python broken.py and tell me why it fails.
+List the functions in calc.py with their signatures.
+Rename average to mean everywhere and make sure nothing else breaks.
