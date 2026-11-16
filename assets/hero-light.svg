@@ -3,7 +3,7 @@
     .s { font-family: 'Space Grotesk', 'Segoe UI', Inter, Helvetica, Arial, sans-serif; }
     .m { font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Consolas, Menlo, monospace; }
   </style>
-  <rect width="1280" height="640" fill="#F7F6F2"/>
+  <rect width="1280" height="640" fill="#F0F5FB"/>
 
   <g transform="translate(70 84) scale(0.27)">
     <g stroke="#0F1115" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none">
@@ -13,7 +13,7 @@
     <rect x="84" y="69" width="22" height="22" rx="5" fill="#0B7A70"/>
   </g>
   <text x="130" y="118" class="s" font-size="30" font-weight="700" fill="#0F1115">sharur</text>
-  <rect x="244" y="95" width="290" height="30" rx="6" fill="none" stroke="#DDDAD2"/>
+  <rect x="244" y="95" width="290" height="30" rx="6" fill="none" stroke="#D4D9DF"/>
   <text x="256" y="115" class="m" font-size="14" fill="#555B64">output style for Claude Code</text>
 
   <text x="72" y="222" class="s" font-size="60" font-weight="700" letter-spacing="-1.8" fill="#0F1115">Same answers.</text>
@@ -38,10 +38,10 @@
     <text x="492" y="508">facts kept</text>
   </g>
 
-  <rect x="672" y="96" width="536" height="230" rx="14" fill="#FFFFFF" stroke="#DDDAD2"/>
+  <rect x="672" y="96" width="536" height="230" rx="14" fill="#FFFFFF" stroke="#D4D9DF"/>
   <text x="696" y="132" class="m" font-size="14" fill="#555B64">Concise</text>
   <text x="1184" y="132" class="m" font-size="14" fill="#555B64" text-anchor="end">101 words · 1,517 tokens</text>
-  <g fill="#D5D2CA">
+  <g fill="#CCD1D7">
     <rect x="696" y="152" width="468" height="10" rx="5"/>
     <rect x="696" y="174" width="430" height="10" rx="5"/>
     <rect x="696" y="196" width="449" height="10" rx="5"/>
