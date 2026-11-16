@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.gif">
-    <img src="assets/hero-light.gif" alt="Sharur, an output style for Claude Code: 48% fewer output tokens, 77% fewer words and 38% fewer tool calls than Concise, with every required fact kept" width="100%">
+    <img src="assets/hero-light.gif" alt="Sharur, an output style for Claude Code: on Claude Opus 5.5 it used 29% fewer output tokens, 76% fewer words and 23% less cost per task than Concise, and kept 90% of the required facts" width="100%">
   </picture>
 </p>
 
@@ -9,7 +9,7 @@
 
 Sharur makes Claude Code answer in one or two lines and use fewer tool calls, so you spend fewer tokens and less money per task. It is a single line of text that you drop into `~/.claude/output-styles/`.
 
-Across 9 test prompts on Claude Fable 5.2 it used 48% fewer output tokens than the built-in Concise style, wrote 77% fewer words, made 38% fewer tool calls and cost 28% less per task. An automated grader found the replies still had the information they needed. On Claude Opus 5.5, Sonnet 5.5 and Haiku 5.5 it cost 18% to 23% less per task and wrote 63% to 76% fewer words. The benchmark scripts are in `bench/`, so you can repeat every run.
+Across 9 test prompts on Claude Opus 5.5 it used 29% fewer output tokens than the built-in Concise style, wrote 76% fewer words and cost 23% less per task. An automated grader found 90% of the required facts in its replies, against 98% for Concise. On Sonnet 5.5, Haiku 5.5 and Fable 5.2 it used 33% to 48% fewer output tokens, wrote 63% to 77% fewer words and cost 18% to 28% less per task. On Fable 5.2, the model it was tuned on, it also made 38% fewer tool calls and kept every required fact. The benchmark scripts are in `bench/`, so you can repeat every run.
 
 Use it to reduce Claude Code token usage and cost, or when you want a terse "caveman mode" that still reports test results, errors and file names.
 
