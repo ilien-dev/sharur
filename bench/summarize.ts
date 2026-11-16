@@ -1,4 +1,4 @@
-// Prints the README tables from results/runs.json.
+// Prints the BENCHMARKS.md tables from results/runs.json.
 // usage: node bench/summarize.ts [results/runs.json]
 import fs from 'node:fs';
 import path from 'node:path';
