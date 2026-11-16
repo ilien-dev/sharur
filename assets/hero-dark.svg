@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-label="Sharur, an output style for Claude Code: 48% fewer output tokens, 77% fewer words, 38% fewer tool calls than Concise, with every required fact kept">
+  <style>
+    .s { font-family: 'Space Grotesk', 'Segoe UI', Inter, Helvetica, Arial, sans-serif; }
+    .m { font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Consolas, Menlo, monospace; }
+  </style>
+  <rect width="1280" height="640" fill="#0F1115"/>
+
+  <g transform="translate(70 84) scale(0.27)">
+    <g stroke="#F2F0EA" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <polyline points="78,36 58,36 58,124 78,124"/>
+      <polyline points="112,36 132,36 132,124 112,124"/>
+    </g>
+    <rect x="84" y="69" width="22" height="22" rx="5" fill="#4FD1C5"/>
+  </g>
+  <text x="130" y="118" class="s" font-size="30" font-weight="700" fill="#F2F0EA">sharur</text>
+  <rect x="244" y="95" width="290" height="30" rx="6" fill="none" stroke="#2A2F37"/>
+  <text x="256" y="115" class="m" font-size="14" fill="#A3A8B0">output style for Claude Code</text>
+
+  <text x="72" y="222" class="s" font-size="60" font-weight="700" letter-spacing="-1.8" fill="#F2F0EA">Same answers.</text>
+  <text x="72" y="286" class="s" font-size="60" font-weight="700" letter-spacing="-1.8" fill="#4FD1C5">48% fewer tokens.</text>
+
+  <text class="s" font-size="21" fill="#C9CDD3">
+    <tspan x="72" y="342">A one-line output style. Claude replies in</tspan>
+    <tspan x="72" y="372">two lines or less and makes fewer tool calls,</tspan>
+    <tspan x="72" y="402">and the replies keep every fact you need.</tspan>
+  </text>
+
+  <g class="s" font-size="32" font-weight="700">
+    <text x="72" y="482" fill="#4FD1C5">−48%</text>
+    <text x="212" y="482" fill="#F2F0EA">−77%</text>
+    <text x="352" y="482" fill="#F2F0EA">−38%</text>
+    <text x="492" y="482" fill="#F2F0EA">100%</text>
+  </g>
+  <g class="m" font-size="13" fill="#A3A8B0">
+    <text x="72" y="508">output tokens</text>
+    <text x="212" y="508">words</text>
+    <text x="352" y="508">tool calls</text>
+    <text x="492" y="508">facts kept</text>
+  </g>
+
+  <rect x="672" y="96" width="536" height="230" rx="14" fill="#171A20" stroke="#2A2F37"/>
+  <text x="696" y="132" class="m" font-size="14" fill="#A3A8B0">Concise</text>
+  <text x="1184" y="132" class="m" font-size="14" fill="#A3A8B0" text-anchor="end">101 words · 1,517 tokens</text>
+  <g fill="#3A3F48">
+    <rect x="696" y="152" width="468" height="10" rx="5"/>
+    <rect x="696" y="174" width="430" height="10" rx="5"/>
+    <rect x="696" y="196" width="449" height="10" rx="5"/>
+    <rect x="696" y="218" width="342" height="10" rx="5"/>
+    <rect x="696" y="240" width="459" height="10" rx="5"/>
+    <rect x="696" y="262" width="415" height="10" rx="5"/>
+    <rect x="696" y="284" width="439" height="10" rx="5"/>
+    <rect x="696" y="306" width="283" height="10" rx="5"/>
+  </g>
+
+  <rect x="672" y="350" width="536" height="170" rx="14" fill="#171A20" stroke="#4FD1C5"/>
+  <text x="696" y="386" class="m" font-size="14" fill="#4FD1C5">Sharur</text>
+  <text x="1184" y="386" class="m" font-size="14" fill="#4FD1C5" text-anchor="end">27 words · 675 tokens</text>
+  <text class="m" font-size="16" fill="#F2F0EA">
+    <tspan x="696" y="422">Multiply added, its test pass. Suite fail</tspan>
+    <tspan x="696" y="448">on old bug: assert subtract(5, 3) == 2</tspan>
+    <tspan x="696" y="474">→ AssertionError; subtract returns a + b.</tspan>
+    <tspan x="696" y="500">Not fixed — want fix?</tspan>
+  </text>
+
+  <text x="672" y="556" class="m" font-size="13" fill="#A3A8B0">Same prompt, same model. Benchmarked over 344 runs.</text>
+</svg>

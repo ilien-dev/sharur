@@ -1,6 +1,6 @@
 ---
 name: Sharur
-description: Minimal replies, fewest tool calls. 48% fewer output tokens than Concise in tests.
+description: Caveman replies of 1-2 lines, exact code and errors, as few tool calls as possible.
 keep-coding-instructions: true
 ---
 

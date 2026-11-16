@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" role="img" aria-label="Sharur logo">
+  <rect width="160" height="160" rx="32" fill="#0F1115"/>
+  <g transform="translate(-15 0)">
+    <g stroke="#F2F0EA" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <polyline points="78,36 58,36 58,124 78,124"/>
+      <polyline points="112,36 132,36 132,124 112,124"/>
+    </g>
+    <rect x="84" y="69" width="22" height="22" rx="5" fill="#4FD1C5"/>
+  </g>
+</svg>
