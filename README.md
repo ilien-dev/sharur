@@ -11,7 +11,7 @@ Sharur makes Claude Code answer in one or two lines and use fewer tool calls, so
 
 Across 9 test prompts on Claude Opus 5.5 it used 29% fewer output tokens than the built-in Concise style, wrote 76% fewer words and cost 23% less per task. An automated grader found 90% of the required facts in its replies, against 98% for Concise. On Sonnet 5.5, Haiku 5.5 and Fable 5.2 it used 33% to 48% fewer output tokens, wrote 63% to 77% fewer words and cost 18% to 28% less per task. On Fable 5.2, the model it was tuned on, it also made 38% fewer tool calls and kept every required fact. The benchmark scripts are in `bench/`, so you can repeat every run.
 
-Use it to reduce Claude Code token usage and cost, or when you want a terse "caveman mode" that still reports test results, errors and file names.
+Use it to reduce Claude Code token usage and cost, or when you want a terse "caveman mode" that keeps test results, errors and file names in most replies.
 
 Sharur is the mace of the Sumerian god Ninurta. The name means "smasher of thousands".
 
@@ -56,7 +56,7 @@ To go back, pick another style in `/config` and delete the file.
 
 ## What it does to a reply
 
-Same prompt, same model, same test project: "Add a multiply function to calc.py with a test, and run the tests." The test file has a bug the prompt does not mention.
+Same prompt, same model (Claude Fable 5.2), same test project: "Add a multiply function to calc.py with a test, and run the tests." The test file has a bug the prompt does not mention.
 
 Concise (101 words, 1,517 output tokens, 6 tool calls):
 

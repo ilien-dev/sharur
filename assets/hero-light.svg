@@ -21,8 +21,8 @@
 
   <text class="s" font-size="21" fill="#3A3F48">
     <tspan x="72" y="342">A one-line output style. Claude replies in</tspan>
-    <tspan x="72" y="372">two lines or less and still reports the</tspan>
-    <tspan x="72" y="402">results, errors and file names you need.</tspan>
+    <tspan x="72" y="372">two lines or less. Most replies keep every</tspan>
+    <tspan x="72" y="402">fact; a few drop a file name or test status.</tspan>
   </text>
 
   <g class="s" font-size="32" font-weight="700">
