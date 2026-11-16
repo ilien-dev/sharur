@@ -1,0 +1,35 @@
+{
+ "clean_streak": 4,
+ "runs": [
+  {
+   "sha": "16ce7c255bfe",
+   "fails": 1,
+   "ruled": "Register: README for non-technical users per the writer's request, so plain/short words overshoot the technical-README band on purpose. A3b: 'is the mace of' is the writer's own etymology line. Triads: 'installer, several skills and its own commands' is caveman's real feature set. A25: sections differ in length and shape. A30: none. A31: kept Opus numbers, all-model table, 379 tokens, PR anecdote. V1: warning and trade-off from writer kept. V2: all numbers from old README, results and post notes."
+  },
+  {
+   "sha": "16ce7c255bfe",
+   "fails": 1,
+   "ruled": "Register: README for non-technical users per the writer's request, so plain/short words overshoot the technical-README band on purpose. A3b: 'is the mace of' is the writer's own etymology line. Triads: 'installer, several skills and its own commands' is caveman's real feature set. A25: sections differ in length and shape. A30: none. A31: kept Opus numbers, all-model table, 379 tokens, PR anecdote. V1: warning and trade-off from writer kept. V2: all numbers from old README, results and post notes."
+  },
+  {
+   "sha": "16ce7c255bfe",
+   "fails": 0,
+   "ruled": "Register: README for non-technical users per the writer's request, so plain/short words overshoot the technical-README band on purpose. A3b: writer's etymology line. Triads: caveman's real feature set. A25 varied. A30 none. A31 kept specifics. V1 warning kept. V2: all numbers and the caveman link traced (link verified via GitHub API earlier)."
+  },
+  {
+   "sha": "16ce7c255bfe",
+   "fails": 0,
+   "ruled": "Register: README for non-technical users per the writer's request, so plain/short words overshoot the technical-README band on purpose. A3b: writer's etymology line. Triads: caveman's real feature set. A25 varied. A30 none. A31 kept specifics. V1 warning kept. V2: all numbers and the caveman link traced (link verified via GitHub API earlier)."
+  },
+  {
+   "sha": "19a05236abfd",
+   "fails": 0,
+   "ruled": "Cold-read fix: repeated 'such as' colon construction rewritten. SEO title/line kept on purpose (writer asked for SEO). Name line is the writer's. Register plain for non-technical readers. Triads real. V2 traced."
+  },
+  {
+   "sha": "19a05236abfd",
+   "fails": 0,
+   "ruled": "Cold-read fix: repeated 'such as' colon construction rewritten. SEO title/line kept on purpose (writer asked for SEO). Name line is the writer's. Register plain for non-technical readers. Triads real. V2 traced."
+  }
+ ]
+}
