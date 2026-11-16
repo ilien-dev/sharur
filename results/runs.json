@@ -9504,5 +9504,3165 @@
   },
   "task_ok": true,
   "reply": "Renombrado `average`→`mean` en `calc.py` y `test_calc.py`; `mean` funciona.\n`test_calc.py` falla por bug previo, sin tocar: `subtract` hace `a + b` (`calc.py:6`). ¿Lo arreglo?"
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 1,
+  "rep": 1,
+  "words": 222,
+  "chars": 1325,
+  "output_tokens": 482,
+  "input_tokens": 23131,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0635,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Both integrate changes from one branch into another, but they handle history differently.\n\n**`git merge`** creates a new merge commit that joins the two branches. History is kept exactly as it happened, including when the branches split and rejoined.\n\n```\nA---B---C  feature\n/         \\\nD---E---F---G---M  main\n```\n\n**`git rebase`** replays your branch's commits one by one on top of the target branch. Each replayed commit becomes a new commit with a new hash, and you end up with a straight line of history and no merge commit.\n\n```\nD---E---F---G---A'---B'---C'\n```\n\n| | Merge | Rebase |\n|---|---|---|\n| History | Keeps the real history, with branches and merge commits | Straight line, looks as if the work happened in sequence |\n| Commit hashes | Unchanged | Rewritten |\n| Conflicts | Resolved once, in the merge commit | May need resolving at each replayed commit |\n| Safe on shared branches | Yes | No, because rewriting commits others already have causes divergence |\n\n**Rule of thumb:** rebase your own local or unpushed feature branch to keep it current with `main` (`git rebase main`) and tidy it (`git rebase -i`). Use merge to bring finished work into shared branches. Never rebase commits other people have already pulled. If you rebase a branch you've already pushed, push it with `git push --force-with-lease`."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 1,
+  "rep": 2,
+  "words": 208,
+  "chars": 1289,
+  "output_tokens": 456,
+  "input_tokens": 23131,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0629,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Both integrate changes from one branch into another. They differ in how history ends up looking:\n\n- **`git merge`** creates a new merge commit that joins the two branch histories. Existing commits stay as they are, so history is non-destructive and shows exactly when branches diverged and came back together. The cost is a branching, sometimes noisy graph.\n- **`git rebase`** replays your branch's commits one by one on top of the target branch. Each replayed commit is a new commit with a new hash. The result is a linear history with no merge commit, but the original commits are rewritten.\n\n```\nmerge:   A---B---C---M   (main)\n              \\     /\n               D---E     (feature)\n\nrebase:  A---B---C---D'---E'   (feature, replayed onto main)\n```\n\n**When to use which:**\n- Use **rebase** to tidy up your own local or unshared branch before opening a PR, for example `git rebase main` or `git rebase -i` to squash commits.\n- Use **merge** to integrate shared branches, or when you want to keep the record of how work actually happened.\n- **Don't rebase commits others have already pulled.** Rewriting them forces a `git push --force` and breaks their copies.\n\nConflicts also differ: a merge makes you resolve them once, while a rebase may stop at each replayed commit that conflicts."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 2,
+  "rep": 1,
+  "words": 55,
+  "chars": 293,
+  "output_tokens": 591,
+  "input_tokens": 74966,
+  "tool_calls": 3,
+  "tools": [
+   "Bash",
+   "Edit",
+   "Bash"
+  ],
+  "cost_usd": 0.0994,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "`test_calc.py` passes now and prints `ok`. The bug was in `calc.py`: `subtract` was returning `a + b` instead of `a - b`.\n\n`broken.py` in the same folder will also crash if you run it. It adds `1` to the string `\"8080\"`, which raises a `TypeError`. The test doesn't use it, so I left it alone."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 2,
+  "rep": 2,
+  "words": 30,
+  "chars": 167,
+  "output_tokens": 621,
+  "input_tokens": 101503,
+  "tool_calls": 5,
+  "tools": [
+   "PowerShell",
+   "Read",
+   "Read",
+   "Edit",
+   "PowerShell"
+  ],
+  "cost_usd": 0.1084,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "`test_calc.py` passes now and prints `ok`. The bug was that `subtract` in `calc.py` added its arguments (`a + b`) instead of subtracting them; I changed it to `a - b`."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 3,
+  "rep": 1,
+  "words": 105,
+  "chars": 687,
+  "output_tokens": 417,
+  "input_tokens": 73837,
+  "tool_calls": 2,
+  "tools": [
+   "Glob",
+   "Read"
+  ],
+  "cost_usd": 0.0905,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    false,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` defines three arithmetic helpers: `add`, `subtract`, and `average`. Two of them have bugs:\n\n1. **`subtract` adds instead of subtracting** (`calc.py:6`). It returns `a + b`, so `subtract(5, 3)` gives `8` instead of `2`. The fix is `return a - b`.\n2. **`average` crashes on an empty list** (`calc.py:10`). `average([])` raises `ZeroDivisionError`. Decide what an empty input should do, either return `None`/`0` or raise a clearer `ValueError`, and handle it explicitly.\n\n`add` is correct. Because none of the functions check their input types, `add(\"a\", \"b\")` joins the strings instead of raising an error. That only matters if callers might pass in something other than numbers."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 3,
+  "rep": 2,
+  "words": 91,
+  "chars": 586,
+  "output_tokens": 412,
+  "input_tokens": 73837,
+  "tool_calls": 2,
+  "tools": [
+   "Glob",
+   "Read"
+  ],
+  "cost_usd": 0.0904,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` defines three helpers: `add`, `subtract` and `average`. Two of them have bugs:\n\n1. **`subtract` adds instead of subtracting** (`calc.py:6`). It returns `a + b`, so `subtract(5, 3)` gives `8` instead of `2`. The fix is `return a - b`.\n2. **`average` crashes on an empty list** (`calc.py:10`). `average([])` raises `ZeroDivisionError`. Either guard against it (`if not values: raise ValueError(...)` or return `None`) or document that the input must not be empty. It also only works on sequences that support `len()`, so passing a generator raises a `TypeError`.\n\n`add` is fine."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 4,
+  "rep": 1,
+  "words": 110,
+  "chars": 637,
+  "output_tokens": 1645,
+  "input_tokens": 156942,
+  "tool_calls": 7,
+  "tools": [
+   "Bash",
+   "Bash",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "Bash"
+  ],
+  "cost_usd": 0.1492,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "I added `multiply`, but the test run still fails because of a bug that was already in `subtract`.\n\nThe script stops at this line:\n\n```\nFile \"test_calc.py\", line 6, in <module>\n    assert subtract(5, 3) == 2\nAssertionError\n```\n\n`subtract` in `calc.py:6` returns `a + b` instead of `a - b`. I didn't change it because it's outside what you asked for.\n\nThe new `multiply(a, b)` is in `calc.py`, and I added two checks for it to `test_calc.py`: `multiply(4, 3) == 12` and `multiply(-2, 5) == -10`. I put them before the `subtract` line, so they ran and passed before the script stopped.\n\nShould I fix `subtract`? It's a one-character change."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 4,
+  "rep": 2,
+  "words": 96,
+  "chars": 542,
+  "output_tokens": 1106,
+  "input_tokens": 153851,
+  "tool_calls": 7,
+  "tools": [
+   "Glob",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "PowerShell",
+   "PowerShell"
+  ],
+  "cost_usd": 0.1308,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "I added `multiply` to `calc.py` with a test in `test_calc.py`, but the test run fails because of a bug that was already there in `subtract`:\n\n```\nFile \"test_calc.py\", line 4, in <module>\n    assert subtract(5, 3) == 2\nAssertionError\n```\n\n`subtract` returns `a + b` instead of `a - b` (`calc.py:6`). The script stops at that first failed assertion, so the new `multiply` test never runs. I checked `multiply(4, 3) == 12` on its own and it passes.\n\nI didn't change `subtract` because you didn't ask me to. Want me to fix it and rerun the tests?"
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 5,
+  "rep": 1,
+  "words": 68,
+  "chars": 415,
+  "output_tokens": 236,
+  "input_tokens": 23133,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0586,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Run:\n\n```\ngit reset --soft HEAD~1\n```\n\nThis removes the last commit (`e5cacd3 Animate the README hero as a looping GIF`) and leaves its changes staged. If you want them unstaged instead, use `git reset HEAD~1`.\n\nIf you've already pushed `animated-hero-main`, you'll need `git push --force-with-lease` after the reset. That rewrites the remote branch's history, so only do it if no one else has built on that commit."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 5,
+  "rep": 2,
+  "words": 86,
+  "chars": 530,
+  "output_tokens": 262,
+  "input_tokens": 23133,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0591,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Run:\n\n```\ngit reset --soft HEAD~1\n```\n\nThis removes the last commit (`e5cacd3 Animate the README hero as a looping GIF`) and leaves its changes staged. To keep the changes but unstage them, use `git reset HEAD~1` (same as `--mixed`).\n\nIf you've already pushed `animated-hero-main`, the next push will be rejected unless you use `git push --force-with-lease`, which rewrites the remote branch. If someone else uses that branch, run `git revert HEAD` instead. It adds a new commit that undoes the last one without rewriting history."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 6,
+  "rep": 1,
+  "words": 172,
+  "chars": 1014,
+  "output_tokens": 376,
+  "input_tokens": 23143,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0517,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "**SQLite**, unless you need one of a few specific things. For ~10 users, it handles the load easily. It's a single file with no server to run, and backups are just copying that file (or using `sqlite3 .backup` / Litestream).\n\nPick **Postgres** instead if any of these apply:\n- **More than one app server or process writes heavily at once.** SQLite allows only one writer at a time. WAL mode makes that fine at this scale, but it won't work across several machines.\n- **The database must live on a separate host from the app**, or on a network filesystem. Don't put SQLite on NFS or SMB shares.\n- **You need Postgres-specific features**, such as advanced JSONB queries, full-text search beyond FTS5, row-level security, PostGIS or LISTEN/NOTIFY.\n- **Your company already runs managed Postgres.** Then it's close to free to use, and it's what your team already knows.\n\nIf you go with SQLite, turn on `PRAGMA journal_mode=WAL;` and set a `busy_timeout`. If you use an ORM, moving to Postgres later is straightforward."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 6,
+  "rep": 2,
+  "words": 163,
+  "chars": 929,
+  "output_tokens": 331,
+  "input_tokens": 23143,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0508,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "**Use SQLite** unless one of the cases below applies. With ~10 users the write load is tiny, and SQLite in WAL mode handles concurrent reads plus occasional writes fine. It also means no database server to run, patch or back up. A backup is just a copy of one file, made with `sqlite3 .backup` or Litestream.\n\n**Choose Postgres if:**\n- More than one app server or container needs to write to the database. SQLite expects a single host with a local disk, and network filesystems like NFS or SMB are risky.\n- Your company already runs managed Postgres (RDS, Cloud SQL and similar). Then it costs you almost nothing extra.\n- You need Postgres-specific features such as LISTEN/NOTIFY, row-level security, or the richer JSONB and full-text search.\n- You expect the tool to grow into something many teams depend on.\n\nIf you start with SQLite, use an ORM or plain standard SQL so that moving to Postgres later is mostly a config change."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 9,
+  "rep": 1,
+  "words": 71,
+  "chars": 361,
+  "output_tokens": 346,
+  "input_tokens": 74107,
+  "tool_calls": 2,
+  "tools": [
+   "PowerShell",
+   "Read"
+  ],
+  "cost_usd": 0.0803,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "It fails with `TypeError: can only concatenate str (not \"int\") to str` at line 4. The JSON on line 3 stores the port as a quoted string (`\"8080\"`), so `cfg[\"port\"]` is the string `\"8080\"`, and `\"8080\" + 1` tries to add an int to a string.\n\nYou can fix it either way:\n- Cast it in code: `int(cfg[\"port\"]) + 1`\n- Store it as a number in the JSON: `{\"port\": 8080}`"
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 9,
+  "rep": 2,
+  "words": 65,
+  "chars": 343,
+  "output_tokens": 317,
+  "input_tokens": 74107,
+  "tool_calls": 2,
+  "tools": [
+   "PowerShell",
+   "Read"
+  ],
+  "cost_usd": 0.0797,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "The script fails with `TypeError: can only concatenate str (not \"int\") to str` on line 4.\n\nIn the JSON on line 3, `\"port\"` is the string `\"8080\"`, not a number, so `cfg[\"port\"] + 1` tries to add an integer to a string. To fix it, convert the value first with `int(cfg[\"port\"]) + 1`, or store the port as a number in the JSON: `{\"port\": 8080}`."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 10,
+  "rep": 1,
+  "words": 36,
+  "chars": 229,
+  "output_tokens": 291,
+  "input_tokens": 73825,
+  "tool_calls": 2,
+  "tools": [
+   "Glob",
+   "Read"
+  ],
+  "cost_usd": 0.0782,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` has three functions:\n\n- `add(a, b)`\n- `subtract(a, b)`\n- `average(values)`\n\n`subtract` has a bug: it returns `a + b` instead of `a - b` (`calc.py:6`). Also, `average` raises `ZeroDivisionError` when given an empty list."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 10,
+  "rep": 2,
+  "words": 31,
+  "chars": 212,
+  "output_tokens": 279,
+  "input_tokens": 73825,
+  "tool_calls": 2,
+  "tools": [
+   "Glob",
+   "Read"
+  ],
+  "cost_usd": 0.0704,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` defines three functions:\n\n- `add(a, b)`\n- `subtract(a, b)`\n- `average(values)`\n\n`subtract` has a bug: it returns `a + b` instead of `a - b` (`calc.py:6`). Also, `average([])` raises `ZeroDivisionError`."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 11,
+  "rep": 1,
+  "words": 82,
+  "chars": 458,
+  "output_tokens": 1163,
+  "input_tokens": 154637,
+  "tool_calls": 7,
+  "tools": [
+   "Grep",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "PowerShell",
+   "PowerShell"
+  ],
+  "cost_usd": 0.1238,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "I renamed `average` to `mean` in `calc.py` and in the import and assertion in `test_calc.py`. Nothing else in the project used the name. `mean([2, 4]) == 3` passes when run on its own.\n\nThe test suite still fails, but not because of the rename. `subtract` in `calc.py:6` returns `a + b` instead of `a - b`, so `test_calc.py:4` fails before the script ever reaches the `mean` check. I didn't change it because it's outside what you asked for. Should I fix it?"
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "Concise",
+  "prompt": 11,
+  "rep": 2,
+  "words": 65,
+  "chars": 357,
+  "output_tokens": 1304,
+  "input_tokens": 155007,
+  "tool_calls": 8,
+  "tools": [
+   "Grep",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "Edit",
+   "Bash",
+   "Bash"
+  ],
+  "cost_usd": 0.1283,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "I renamed `average` to `mean` in `calc.py` and `test_calc.py`, and no references to `average` are left. `mean([2, 4]) == 3` passes when run on its own.\n\nThe test file still fails, but not because of the rename. `subtract` in `calc.py:6` returns `a + b` instead of `a - b`, so `assert subtract(5, 3) == 2` fails. It's a one-character fix; want me to make it?"
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 1,
+  "rep": 1,
+  "words": 26,
+  "chars": 177,
+  "output_tokens": 59,
+  "input_tokens": 22752,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0347,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Merge: joins branches with a merge commit, history preserved. Rebase: replays your commits onto the target, giving linear history but rewriting it. Never rebase shared branches."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 1,
+  "rep": 2,
+  "words": 31,
+  "chars": 189,
+  "output_tokens": 61,
+  "input_tokens": 22752,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0347,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Merge joins branches with a merge commit and keeps the history. Rebase replays your commits onto the target for a linear history but rewrites commit hashes, so never rebase shared branches."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 2,
+  "rep": 1,
+  "words": 16,
+  "chars": 93,
+  "output_tokens": 584,
+  "input_tokens": 125091,
+  "tool_calls": 5,
+  "tools": [
+   "Bash",
+   "Bash",
+   "Read",
+   "Edit",
+   "Bash"
+  ],
+  "cost_usd": 0.0911,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Fixed. `subtract` in `calc.py:6` did `a + b`, now `a - b`. `python test_calc.py` prints `ok`."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 2,
+  "rep": 2,
+  "words": 18,
+  "chars": 122,
+  "output_tokens": 941,
+  "input_tokens": 203606,
+  "tool_calls": 8,
+  "tools": [
+   "PowerShell",
+   "PowerShell",
+   "Read",
+   "Edit",
+   "PowerShell",
+   "PowerShell",
+   "PowerShell",
+   "PowerShell"
+  ],
+  "cost_usd": 0.1176,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Fixed subtract; verifying.\nFixed: `calc.py:6` `subtract` returned `a + b`, now `a - b`. `python test_calc.py` prints `ok`."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 3,
+  "rep": 1,
+  "words": 22,
+  "chars": 151,
+  "output_tokens": 174,
+  "input_tokens": 47717,
+  "tool_calls": 1,
+  "tools": [
+   "Read"
+  ],
+  "cost_usd": 0.0592,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Basic math helpers: `add`, `subtract`, `average`. Bugs: `subtract` returns `a + b` (should be `a - b`, line 6); `average([])` raises ZeroDivisionError."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 3,
+  "rep": 2,
+  "words": 17,
+  "chars": 129,
+  "output_tokens": 186,
+  "input_tokens": 47717,
+  "tool_calls": 1,
+  "tools": [
+   "Read"
+  ],
+  "cost_usd": 0.0594,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    false,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "calc.py has `add`, `subtract`, `average`. Bug: `subtract` returns `a + b` (line 6). Risk: `average([])` raises ZeroDivisionError."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 4,
+  "rep": 1,
+  "words": 29,
+  "chars": 181,
+  "output_tokens": 1448,
+  "input_tokens": 178781,
+  "tool_calls": 9,
+  "tools": [
+   "PowerShell",
+   "PowerShell",
+   "Bash",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "Edit",
+   "PowerShell"
+  ],
+  "cost_usd": 0.1276,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    false,
+    false
+   ],
+   "clear": false
+  },
+  "task_ok": true,
+  "reply": "Multiply added. Running tests.\nAdded `multiply` and its test. Tests fail before reaching it: `subtract` in `calc.py:6` returns `a + b`, failing `assert subtract(5, 3) == 2`. Fix it?"
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 4,
+  "rep": 2,
+  "words": 27,
+  "chars": 156,
+  "output_tokens": 1034,
+  "input_tokens": 150981,
+  "tool_calls": 8,
+  "tools": [
+   "PowerShell",
+   "Glob",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "Edit",
+   "PowerShell"
+  ],
+  "cost_usd": 0.1092,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Added `multiply` and its test, but tests fail first on an old bug: `subtract` returns `a + b` (`calc.py:6`). So the multiply test never ran. Fix `subtract`?"
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 5,
+  "rep": 1,
+  "words": 23,
+  "chars": 145,
+  "output_tokens": 65,
+  "input_tokens": 22754,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0348,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`git reset --soft HEAD~1` keeps the changes staged. `git reset HEAD~1` keeps them unstaged. If you already pushed, use `git revert HEAD` instead."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 5,
+  "rep": 2,
+  "words": 21,
+  "chars": 137,
+  "output_tokens": 63,
+  "input_tokens": 22754,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0348,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`git reset --soft HEAD~1` keeps changes staged; `git reset HEAD~1` keeps them unstaged. If already pushed, use `git revert HEAD` instead."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 6,
+  "rep": 1,
+  "words": 28,
+  "chars": 174,
+  "output_tokens": 63,
+  "input_tokens": 22764,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0348,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "SQLite. It's simpler, needs no server, and easily handles 10 users. Switch to Postgres if you need heavy concurrent writes, several app servers, or rich types and extensions."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 6,
+  "rep": 2,
+  "words": 31,
+  "chars": 187,
+  "output_tokens": 65,
+  "input_tokens": 22764,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0348,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "SQLite. With 10 users it's simpler: one file, no server to run, and easy backups. Pick Postgres if you need many concurrent writers, network access from several hosts, or managed hosting."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 9,
+  "rep": 1,
+  "words": 27,
+  "chars": 159,
+  "output_tokens": 212,
+  "input_tokens": 47758,
+  "tool_calls": 1,
+  "tools": [
+   "PowerShell"
+  ],
+  "cost_usd": 0.0603,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "It fails at line 4 with `TypeError: can only concatenate str (not \"int\") to str`, because `cfg[\"port\"]` is a string, not a number. Fix: `int(cfg[\"port\"]) + 1`."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 9,
+  "rep": 2,
+  "words": 20,
+  "chars": 123,
+  "output_tokens": 195,
+  "input_tokens": 47755,
+  "tool_calls": 1,
+  "tools": [
+   "PowerShell"
+  ],
+  "cost_usd": 0.0599,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`TypeError: can only concatenate str (not \"int\") to str` at line 4: `cfg[\"port\"]` is a string. Fix: `int(cfg[\"port\"]) + 1`."
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 10,
+  "rep": 1,
+  "words": 8,
+  "chars": 71,
+  "output_tokens": 166,
+  "input_tokens": 47701,
+  "tool_calls": 1,
+  "tools": [
+   "Grep"
+  ],
+  "cost_usd": 0.059,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` functions:\n- `add(a, b)`, `subtract(a, b)`, `average(values)`"
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 10,
+  "rep": 2,
+  "words": 18,
+  "chars": 110,
+  "output_tokens": 192,
+  "input_tokens": 47703,
+  "tool_calls": 1,
+  "tools": [
+   "Grep"
+  ],
+  "cost_usd": 0.0595,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` has three functions:\n- `add(a, b)` (line 1)\n- `subtract(a, b)` (line 5)\n- `average(values)` (line 9)"
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 11,
+  "rep": 1,
+  "words": 29,
+  "chars": 176,
+  "output_tokens": 812,
+  "input_tokens": 99175,
+  "tool_calls": 6,
+  "tools": [
+   "Grep",
+   "Read",
+   "Read",
+   "Edit",
+   "Write",
+   "PowerShell"
+  ],
+  "cost_usd": 0.0914,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    false,
+    true,
+    false
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Renamed `average` to `mean` in `calc.py` and `test_calc.py`. Test still fails, but the rename didn't cause it: `subtract` already does `a + b` (`calc.py:6`). Want me to fix it?"
+ },
+ {
+  "round": "claude-opus-5-5",
+  "env": "clean",
+  "model": "claude-opus-5-5",
+  "style": "T1",
+  "prompt": 11,
+  "rep": 2,
+  "words": 25,
+  "chars": 172,
+  "output_tokens": 1181,
+  "input_tokens": 125168,
+  "tool_calls": 8,
+  "tools": [
+   "Grep",
+   "PowerShell",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "Edit",
+   "PowerShell"
+  ],
+  "cost_usd": 0.1081,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Renamed `average` to `mean` in `calc.py` and `test_calc.py`; no other uses. Test still fails: `subtract` adds instead of subtracting (`calc.py:6`), an existing bug. Fix it?"
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 1,
+  "rep": 1,
+  "words": 114,
+  "chars": 750,
+  "output_tokens": 251,
+  "input_tokens": 23040,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0291,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "**Merge** combines two branches by creating a new merge commit with two parents. History is preserved exactly as it happened, including the branch structure.\n\n**Rebase** replays your branch's commits on top of another branch, creating new commits (new hashes). The result is a linear history with no merge commit.\n\n**Trade-offs:**\n- **Merge:** non-destructive and safe for shared branches, but history can get cluttered with merge commits.\n- **Rebase:** cleaner, linear history, but it rewrites commits. Never rebase branches others have pulled, since it forces them to reconcile diverged history.\n\n**Rule of thumb:** rebase your local, unpushed work to catch up with `main`. Merge when integrating shared or public branches (e.g., a PR into `main`)."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 1,
+  "rep": 2,
+  "words": 139,
+  "chars": 851,
+  "output_tokens": 268,
+  "input_tokens": 23040,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0292,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Both combine work from two branches, but they differ in how they record history:\n\n- **Merge** joins the branches with a new merge commit that has two parents. Existing commits stay unchanged, and history shows exactly when the branches diverged and joined. It's non-destructive, but the log can get noisy with merge commits.\n\n- **Rebase** replays your branch's commits on top of another branch's tip. Each commit is rewritten with a new hash, so history is linear and has no merge commit. The cost is that you rewrite history, so you shouldn't rebase commits others have already pulled. If you must push a rebased branch, you'll need `--force-with-lease`.\n\n**Rule of thumb:** use rebase to update your local feature branch with `main` and keep history clean. Use merge to integrate shared or public branches, where preserving the true history matters."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 2,
+  "rep": 1,
+  "words": 21,
+  "chars": 116,
+  "output_tokens": 561,
+  "input_tokens": 100891,
+  "tool_calls": 6,
+  "tools": [
+   "Glob",
+   "Bash",
+   "Read",
+   "Read",
+   "Edit",
+   "Bash"
+  ],
+  "cost_usd": 0.0483,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Fixed: `subtract` in `calc.py` returned `a + b`, and I changed it to `a - b`. `python test_calc.py` now prints `ok`."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 2,
+  "rep": 2,
+  "words": 18,
+  "chars": 102,
+  "output_tokens": 349,
+  "input_tokens": 74426,
+  "tool_calls": 3,
+  "tools": [
+   "Bash",
+   "Edit",
+   "Bash"
+  ],
+  "cost_usd": 0.0462,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Fixed. `subtract` in `calc.py` used `a + b` instead of `a - b`. `python test_calc.py` now prints `ok`."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 3,
+  "rep": 1,
+  "words": 115,
+  "chars": 692,
+  "output_tokens": 389,
+  "input_tokens": 73564,
+  "tool_calls": 2,
+  "tools": [
+   "Glob",
+   "Read"
+  ],
+  "cost_usd": 0.04,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` has three small math helpers: `add`, `subtract` and `average`. It has two bugs:\n\n- **`subtract` is wrong (line 6).** It returns `a + b` instead of `a - b`, so every call gives the wrong result. The fix is `return a - b`.\n- **`average` crashes on empty input (line 10).** `average([])` raises `ZeroDivisionError` because `len(values)` is 0. Either guard against an empty list, or let it raise a clearer `ValueError`.\n\nNone of the functions check their argument types. `add` will also concatenate strings or lists, and `average` fails on non-numeric items. That only matters if callers might pass something other than numbers.\n\nI haven't changed anything. Do you want me to fix these?"
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 3,
+  "rep": 2,
+  "words": 118,
+  "chars": 667,
+  "output_tokens": 392,
+  "input_tokens": 73564,
+  "tool_calls": 2,
+  "tools": [
+   "Glob",
+   "Read"
+  ],
+  "cost_usd": 0.04,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` has three small arithmetic helpers, and one of them is wrong.\n\n- **`subtract` (line 6) is a bug.** It returns `a + b` instead of `a - b`, so every call gives the wrong answer.\n- **`average` (line 10) raises `ZeroDivisionError` on an empty sequence.** It also fails on a generator, because `len()` doesn't work on one. Handle the empty case explicitly, either by raising a clearer error or by returning a default.\n- **`add` is fine.** It works on any type that supports `+`, including strings and lists.\n\nFix for `subtract`:\n\n```python\ndef subtract(a, b):\n    return a - b\n```\n\nI haven't changed the file. I can apply the fix and guard `average` if you want."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 4,
+  "rep": 1,
+  "words": 75,
+  "chars": 405,
+  "output_tokens": 910,
+  "input_tokens": 126595,
+  "tool_calls": 6,
+  "tools": [
+   "Glob",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "PowerShell"
+  ],
+  "cost_usd": 0.0549,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "I added `multiply` and its test, but the test run fails on an existing bug. `subtract` in `calc.py` returns `a + b`, so `subtract(5, 3)` gives 8 instead of 2. That assertion fails before the script reaches the `average` check.\n\nThe `multiply(4, 3) == 12` assertion comes earlier in the file, so it passed.\n\nI didn't touch `subtract` because you didn't ask for that. Do you want me to change it to `a - b`?"
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 4,
+  "rep": 2,
+  "words": 58,
+  "chars": 313,
+  "output_tokens": 1312,
+  "input_tokens": 127414,
+  "tool_calls": 8,
+  "tools": [
+   "Glob",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "Bash",
+   "Edit",
+   "Bash"
+  ],
+  "cost_usd": 0.0658,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "I added `multiply` to `calc.py` and three asserts for it in `test_calc.py`. The tests now pass (`ok`).\n\nThe first run failed on an existing assert, `subtract(5, 3) == 2`, because `subtract` in `calc.py` returned `a + b`. I changed it to `a - b`, which you didn't ask for, so revert it if you want that left alone."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 5,
+  "rep": 1,
+  "words": 26,
+  "chars": 163,
+  "output_tokens": 68,
+  "input_tokens": 23042,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0227,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Run `git reset --soft HEAD~1`.\n\nThis removes the commit and leaves your changes staged. Use `git reset HEAD~1` (mixed, the default) to leave them unstaged instead."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 5,
+  "rep": 2,
+  "words": 32,
+  "chars": 188,
+  "output_tokens": 73,
+  "input_tokens": 23042,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0227,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Run `git reset --soft HEAD~1`.\n\nThis removes the commit and leaves its changes staged. Use `git reset HEAD~1` (mixed, the default) if you want them unstaged but still in your working tree."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 6,
+  "rep": 1,
+  "words": 142,
+  "chars": 893,
+  "output_tokens": 316,
+  "input_tokens": 23052,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0252,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Use SQLite. With ~10 users, there's no concurrency pressure, and it means zero server to run, back up, or secure. Your database is a single file, so deployment and backups are trivial (copy the file, or use `litestream` for continuous replication).\n\nChoose Postgres instead if any of these apply:\n- You expect heavy concurrent writes, or the tool may grow well beyond internal use.\n- Multiple app servers need to share one database.\n- You need Postgres-specific features (rich JSON querying, full-text search at scale, row-level security, extensions).\n- Your hosting platform has an ephemeral filesystem (e.g., many PaaS/containers without persistent volumes), where a file-based DB is awkward.\n\nIf you use an ORM or query builder, migrating from SQLite to Postgres later is usually a modest job. Turn on WAL mode (`PRAGMA journal_mode=WAL`) and you'll rarely hit locking issues at this scale."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 6,
+  "rep": 2,
+  "words": 132,
+  "chars": 747,
+  "output_tokens": 273,
+  "input_tokens": 23052,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0248,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Use SQLite, unless you need multiple app servers or the DB on a separate host.\n\nFor ~10 users, SQLite (WAL mode) handles the load easily, needs no server to run, and backs up by copying one file. Postgres adds ops overhead (a service, credentials, upgrades, backups) that a tool this size doesn't repay.\n\nPick Postgres if:\n- The app will run on more than one machine or container with a shared DB.\n- You need heavy concurrent writes, or features like `LISTEN/NOTIFY`, row-level security, or rich extensions.\n- Your host has no persistent disk, as with some PaaS and serverless setups.\n- You expect it to grow well beyond a small internal tool.\n\nIf you're unsure, start on SQLite. Using an ORM or query builder makes a later move to Postgres cheap."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 9,
+  "rep": 1,
+  "words": 52,
+  "chars": 275,
+  "output_tokens": 259,
+  "input_tokens": 73778,
+  "tool_calls": 2,
+  "tools": [
+   "Bash",
+   "Read"
+  ],
+  "cost_usd": 0.0391,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`broken.py` fails with a `TypeError` on line 4. The JSON on line 3 has `\"port\": \"8080\"`, which is a string, so `cfg[\"port\"] + 1` tries to add an int to a str.\n\nTo fix it, convert the value first with `int(cfg[\"port\"]) + 1`. You could also change the JSON to `{\"port\": 8080}`."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 9,
+  "rep": 2,
+  "words": 66,
+  "chars": 376,
+  "output_tokens": 324,
+  "input_tokens": 73809,
+  "tool_calls": 2,
+  "tools": [
+   "Bash",
+   "Read"
+  ],
+  "cost_usd": 0.0399,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`broken.py` fails with `TypeError: can only concatenate str (not \"int\") to str` on line 4.\n\nThe JSON on line 3 has `\"port\": \"8080\"`, and the quotes make it a string. Adding `1` to it is a str + int operation, which Python doesn't allow.\n\nTo fix it, convert the value first: `print(int(cfg[\"port\"]) + 1)`. That prints `8081`. You could also change the JSON to `{\"port\": 8080}`."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 10,
+  "rep": 1,
+  "words": 12,
+  "chars": 84,
+  "output_tokens": 199,
+  "input_tokens": 48319,
+  "tool_calls": 1,
+  "tools": [
+   "Grep"
+  ],
+  "cost_usd": 0.0352,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` has three functions:\n\n- `add(a, b)`\n- `subtract(a, b)`\n- `average(values)`"
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 10,
+  "rep": 2,
+  "words": 12,
+  "chars": 84,
+  "output_tokens": 191,
+  "input_tokens": 48311,
+  "tool_calls": 1,
+  "tools": [
+   "Grep"
+  ],
+  "cost_usd": 0.0314,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` has three functions:\n\n- `add(a, b)`\n- `subtract(a, b)`\n- `average(values)`"
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 11,
+  "rep": 1,
+  "words": 66,
+  "chars": 368,
+  "output_tokens": 1134,
+  "input_tokens": 179661,
+  "tool_calls": 8,
+  "tools": [
+   "Grep",
+   "Grep",
+   "Edit",
+   "Edit",
+   "Edit",
+   "Bash",
+   "Read",
+   "Bash"
+  ],
+  "cost_usd": 0.0638,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "I renamed `average` to `mean` in `calc.py` and `test_calc.py`, and nothing else in the repo referenced it. `mean([2, 4]) == 3` passes.\n\n`test_calc.py` still fails, but not because of the rename. `subtract` in `calc.py:6` returns `a + b` instead of `a - b`, so `assert subtract(5, 3) == 2` fails. I left it alone since it's outside the rename. Do you want me to fix it?"
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "Concise",
+  "prompt": 11,
+  "rep": 2,
+  "words": 84,
+  "chars": 495,
+  "output_tokens": 1211,
+  "input_tokens": 154982,
+  "tool_calls": 9,
+  "tools": [
+   "Grep",
+   "Bash",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "Edit",
+   "Bash",
+   "Bash"
+  ],
+  "cost_usd": 0.0632,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": false
+  },
+  "task_ok": true,
+  "reply": "`-I` drops the script directory from the path, so I'll rerun without it.\nI renamed `average` to `mean` in `calc.py` and `test_calc.py`. Those were the only two places it appeared. The rename itself doesn't break anything, but `test_calc.py` still fails.\n\nThe failure is an existing bug, not something I introduced. `subtract` in `calc.py` returns `a + b`, so `assert subtract(5, 3) == 2` fails. The `mean` assertion comes after it and hasn't run.\n\nDo you want me to change `subtract` to `a - b`?"
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 1,
+  "rep": 1,
+  "words": 29,
+  "chars": 199,
+  "output_tokens": 64,
+  "input_tokens": 22661,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0174,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Merge joins branches with a merge commit, preserving history as it happened.\n\nRebase replays your commits onto another base, giving linear history but rewriting commits. Don't rebase shared branches."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 1,
+  "rep": 2,
+  "words": 29,
+  "chars": 199,
+  "output_tokens": 62,
+  "input_tokens": 22661,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0174,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Merge joins branches with a merge commit, preserving history as it happened. Rebase replays your commits onto another base, giving linear history but rewriting commits (don't rebase shared branches)."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 2,
+  "rep": 1,
+  "words": 14,
+  "chars": 80,
+  "output_tokens": 305,
+  "input_tokens": 73254,
+  "tool_calls": 2,
+  "tools": [
+   "Bash",
+   "Edit"
+  ],
+  "cost_usd": 0.0356,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    false
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Fixed: `subtract` in `calc.py` used `+`, now uses `-`. I didn't rerun the tests."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 2,
+  "rep": 2,
+  "words": 12,
+  "chars": 82,
+  "output_tokens": 457,
+  "input_tokens": 98744,
+  "tool_calls": 4,
+  "tools": [
+   "Bash",
+   "Bash",
+   "Edit",
+   "Bash"
+  ],
+  "cost_usd": 0.0407,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Fixed. `subtract` in `calc.py` used `+`, now uses `-`. `test_calc.py` prints `ok`."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 3,
+  "rep": 1,
+  "words": 25,
+  "chars": 160,
+  "output_tokens": 222,
+  "input_tokens": 72390,
+  "tool_calls": 2,
+  "tools": [
+   "Glob",
+   "Read"
+  ],
+  "cost_usd": 0.0329,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Tiny math helpers: `add`, `subtract`, `average`.\n\nBugs:\n- `subtract` returns `a + b` (line 6). It should be `a - b`.\n- `average([])` raises `ZeroDivisionError`."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 3,
+  "rep": 2,
+  "words": 24,
+  "chars": 162,
+  "output_tokens": 222,
+  "input_tokens": 72390,
+  "tool_calls": 2,
+  "tools": [
+   "Glob",
+   "Read"
+  ],
+  "cost_usd": 0.0329,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` has `add`, `subtract` and `average`.\n\n- **Bug:** `subtract` returns `a + b`. It should be `a - b`.\n- **Risk:** `average([])` raises `ZeroDivisionError`."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 4,
+  "rep": 1,
+  "words": 36,
+  "chars": 194,
+  "output_tokens": 1005,
+  "input_tokens": 149892,
+  "tool_calls": 6,
+  "tools": [
+   "Bash",
+   "Bash",
+   "Bash",
+   "Edit",
+   "Edit",
+   "Bash"
+  ],
+  "cost_usd": 0.0532,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Added `multiply` and its test. The test run fails on the existing `subtract(5, 3)` assert, because `subtract` in `calc.py` returns `a + b`. I haven't touched it. Want me to change it to `a - b`?"
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 4,
+  "rep": 2,
+  "words": 40,
+  "chars": 230,
+  "output_tokens": 886,
+  "input_tokens": 124704,
+  "tool_calls": 5,
+  "tools": [
+   "Bash",
+   "Bash",
+   "Edit",
+   "Write",
+   "Bash"
+  ],
+  "cost_usd": 0.0489,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Added `multiply` and its test, but the tests fail. The failure is an existing bug: `subtract` in `calc.py` returns `a + b`. The multiply assert is never reached, because the subtract assert fails first.\n\nFix `subtract` to `a - b`?"
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 5,
+  "rep": 1,
+  "words": 16,
+  "chars": 102,
+  "output_tokens": 53,
+  "input_tokens": 22663,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0173,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`git reset --soft HEAD~1`\n\nKeeps changes staged. Use `git reset HEAD~1` (mixed) to keep them unstaged."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 5,
+  "rep": 2,
+  "words": 16,
+  "chars": 102,
+  "output_tokens": 53,
+  "input_tokens": 22663,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0173,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`git reset --soft HEAD~1`\n\nKeeps changes staged. Use `git reset HEAD~1` (mixed) to keep them unstaged."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 6,
+  "rep": 1,
+  "words": 38,
+  "chars": 211,
+  "output_tokens": 72,
+  "input_tokens": 22673,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0175,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "SQLite. 10 users is well within its range, and it means no server to run or back up beyond one file. Switch to Postgres only if you need heavy concurrent writes, multiple app servers, or a network-accessible DB."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 6,
+  "rep": 2,
+  "words": 31,
+  "chars": 188,
+  "output_tokens": 74,
+  "input_tokens": 22673,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0175,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "SQLite. 10 users, internal tool: zero ops, single file, easy backup. Use WAL mode.\n\nSwitch to Postgres only if you need heavy concurrent writes, multiple app servers, or network DB access."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 9,
+  "rep": 1,
+  "words": 33,
+  "chars": 189,
+  "output_tokens": 160,
+  "input_tokens": 47571,
+  "tool_calls": 1,
+  "tools": [
+   "Bash"
+  ],
+  "cost_usd": 0.0296,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`broken.py` line 4 fails with `TypeError: can only concatenate str (not \"int\") to str`. `cfg[\"port\"]` is a string, and `+ 1` adds an int to it. Convert it first with `int(cfg[\"port\"]) + 1`."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 9,
+  "rep": 2,
+  "words": 31,
+  "chars": 175,
+  "output_tokens": 159,
+  "input_tokens": 47571,
+  "tool_calls": 1,
+  "tools": [
+   "Bash"
+  ],
+  "cost_usd": 0.0296,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`broken.py` line 4 fails with `TypeError: can only concatenate str (not \"int\") to str`. `cfg[\"port\"]` is a string, so `+ 1` can't add to it. Wrap it as `int(cfg[\"port\"]) + 1`."
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 10,
+  "rep": 1,
+  "words": 10,
+  "chars": 73,
+  "output_tokens": 189,
+  "input_tokens": 47541,
+  "tool_calls": 1,
+  "tools": [
+   "Grep"
+  ],
+  "cost_usd": 0.0298,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` functions:\n- `add(a, b)`\n- `subtract(a, b)`\n- `average(values)`"
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 10,
+  "rep": 2,
+  "words": 10,
+  "chars": 73,
+  "output_tokens": 188,
+  "input_tokens": 47540,
+  "tool_calls": 1,
+  "tools": [
+   "Grep"
+  ],
+  "cost_usd": 0.0298,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` functions:\n- `add(a, b)`\n- `subtract(a, b)`\n- `average(values)`"
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 11,
+  "rep": 1,
+  "words": 35,
+  "chars": 195,
+  "output_tokens": 472,
+  "input_tokens": 98258,
+  "tool_calls": 3,
+  "tools": [
+   "Grep",
+   "Bash",
+   "Read"
+  ],
+  "cost_usd": 0.0398,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    false,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Rename done in `calc.py` and `test_calc.py`. No `average` left.\n\nThe test fails because of an existing bug, not the rename. `subtract` returns `a + b` (`calc.py:6`). Want me to fix it to `a - b`?"
+ },
+ {
+  "round": "claude-sonnet-5-5",
+  "env": "clean",
+  "model": "claude-sonnet-5-5",
+  "style": "T1",
+  "prompt": 11,
+  "rep": 2,
+  "words": 45,
+  "chars": 243,
+  "output_tokens": 852,
+  "input_tokens": 124264,
+  "tool_calls": 6,
+  "tools": [
+   "Grep",
+   "Read",
+   "Edit",
+   "Read",
+   "Write",
+   "Bash"
+  ],
+  "cost_usd": 0.0488,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Renamed `average` to `mean` in `calc.py` and `test_calc.py`. The test run fails on a separate bug: `subtract` in `calc.py` returns `a + b`, so `subtract(5, 3)` isn't 2. I haven't fixed it, since you didn't ask. Want me to change it to `a - b`?"
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 1,
+  "rep": 1,
+  "words": 128,
+  "chars": 772,
+  "output_tokens": 246,
+  "input_tokens": 23843,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0013,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Both integrate changes from one branch into another, but they differ in how history is recorded.\n\n- **`git merge`** creates a new commit that joins the two branch tips. History is preserved exactly as it happened, with a branch-and-join shape. Existing commits are never rewritten, so it's safe on shared branches.\n- **`git rebase`** replays your commits one by one on top of the target branch's latest commit, producing new commits with new hashes. History becomes a straight line with no merge commit. It's cleaner to read, but because it rewrites commits, you should avoid rebasing branches others have already pulled.\n\nA common pattern: rebase your local feature branch onto `main` to pick up upstream changes, then merge it into `main` (or open a PR) to integrate it."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 1,
+  "rep": 2,
+  "words": 121,
+  "chars": 765,
+  "output_tokens": 239,
+  "input_tokens": 23843,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0013,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Merge combines two branches by creating a new commit that has both histories as parents, leaving existing commits untouched. Rebase replays your branch's commits one by one onto a new base, rewriting them as new commits with different hashes, so the history reads as a single straight line.\n\n- **Merge:** preserves the true history, including when branches diverged. Safe on shared branches. Cost: a noisier graph with merge commits.\n- **Rebase:** produces linear history that is easier to read. Don't rebase commits others have already pulled, because the rewritten hashes will conflict with their copies.\n\nA common pattern: rebase your private feature branch onto the latest `main` to pick up upstream changes, then merge it into `main` (often as a fast-forward)."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 2,
+  "rep": 1,
+  "words": 82,
+  "chars": 490,
+  "output_tokens": 926,
+  "input_tokens": 131004,
+  "tool_calls": 5,
+  "tools": [
+   "Bash",
+   "Bash",
+   "Bash",
+   "Edit",
+   "Bash"
+  ],
+  "cost_usd": 0.0034,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "The real bug is `subtract` in `calc.py`, which returns `a + b`. The `-I` flag also hid the script directory from the import path, so I'll rerun without it.\n`test_calc.py` now passes and prints `ok`.\n\nThe bug was in `calc.py`: `subtract` returned `a + b`. I changed it to `a - b`. Nothing was committed.\n\n`python -I test_calc.py` fails with `No module named 'calc'` because `-I` drops the script's directory from the import path. Plain `python test_calc.py` from the project directory works."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 2,
+  "rep": 2,
+  "words": 32,
+  "chars": 180,
+  "output_tokens": 802,
+  "input_tokens": 130301,
+  "tool_calls": 5,
+  "tools": [
+   "Bash",
+   "Bash",
+   "Bash",
+   "Edit",
+   "Bash"
+  ],
+  "cost_usd": 0.0033,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Fixed. `test_calc.py` now prints `ok`.\n\nThe bug was in `calc.py`: `subtract` returned `a + b`. I changed it to `a - b`. I didn't touch `broken.py`, which is unrelated to this test."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 3,
+  "rep": 1,
+  "words": 93,
+  "chars": 557,
+  "output_tokens": 502,
+  "input_tokens": 76126,
+  "tool_calls": 2,
+  "tools": [
+   "Glob",
+   "Bash"
+  ],
+  "cost_usd": 0.0024,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` is a 10-line module with three functions, and it has two bugs.\n\n- **`subtract` is wrong (line 6):** it returns `a + b`, so `subtract(5, 3)` gives `8` instead of `2`. The fix is `return a - b`.\n- **`average` fails on empty input (line 10):** `average([])` raises `ZeroDivisionError` because it divides by `len(values)` without checking. Decide what an empty list should return, or raise a clearer error.\n\n`add` is correct. Nothing else in the file is risky, though `average` on a generator would also fail, since `len()` doesn't work on generators."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 3,
+  "rep": 2,
+  "words": 107,
+  "chars": 672,
+  "output_tokens": 724,
+  "input_tokens": 76126,
+  "tool_calls": 2,
+  "tools": [
+   "Glob",
+   "Bash"
+  ],
+  "cost_usd": 0.0025,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` defines three functions: `add(a, b)`, `subtract(a, b)`, and `average(values)`. It has a clear bug.\n\n- **`subtract` is wrong (line 6):** it returns `a + b`, so `subtract(5, 3)` gives `8` instead of `2`. The fix is `return a - b`.\n- **`average` fails on an empty input (line 10):** `average([])` raises `ZeroDivisionError`. Decide whether it should return `None`, return `0`, or raise a clearer error, and handle that case explicitly.\n- **`average` fails on generators (line 10):** `len()` doesn't work on generators or other iterables without a length, so `average(x for x in ...)` raises `TypeError`. Call `list(values)` first if you want to accept any iterable."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 4,
+  "rep": 1,
+  "words": 86,
+  "chars": 479,
+  "output_tokens": 1523,
+  "input_tokens": 159702,
+  "tool_calls": 7,
+  "tools": [
+   "Bash",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "Bash",
+   "Bash"
+  ],
+  "cost_usd": 0.0041,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Added `multiply(a, b)` to `calc.py` and three asserts for it in `test_calc.py` (`3*4`, `-2*5`, `0*7`). The `multiply` assertions are not reached: the test run fails earlier on the existing `subtract` assertion.\n\n`subtract` in `calc.py` returns `a + b` instead of `a - b`, so `subtract(5, 3)` gives 8 and `assert subtract(5, 3) == 2` fails. I left it alone since it wasn't part of the request. The fix is changing line 6 to `return a - b`; say the word and I'll make it and rerun."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 4,
+  "rep": 2,
+  "words": 112,
+  "chars": 668,
+  "output_tokens": 1935,
+  "input_tokens": 245547,
+  "tool_calls": 10,
+  "tools": [
+   "Bash",
+   "Bash",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "Edit",
+   "Bash",
+   "Bash",
+   "Bash"
+  ],
+  "cost_usd": 0.0053,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "I added `multiply` to `calc.py` with a test in `test_calc.py`, but the test run fails before reaching it.\n\n- **`multiply`**: `calc.py` now has `multiply(a, b)` returning `a * b`. I checked it directly: `multiply(4, 3) == 12` passes.\n- **Test**: `test_calc.py` imports `multiply` and asserts `multiply(4, 3) == 12`.\n- **Test run**: `python test_calc.py` exits 1 on `assert subtract(5, 3) == 2`. The existing `subtract` in `calc.py` returns `a + b`, so it's a pre-existing bug. The assertion also stops the script before the new `multiply` line runs.\n\nI didn't change `subtract` because it's outside the request. The fix is `return a - b`; say if you want me to make it."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 5,
+  "rep": 1,
+  "words": 62,
+  "chars": 373,
+  "output_tokens": 221,
+  "input_tokens": 23845,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0011,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Run `git reset --soft HEAD~1`. This moves the branch back one commit and leaves your changes staged, ready to recommit.\n\nIf you want the changes unstaged instead, use `git reset HEAD~1`. Either way, your working-tree files are untouched.\n\nOnly do this if the commit hasn't been pushed. If it has, undoing it means rewriting shared history, so use `git revert HEAD` instead."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 5,
+  "rep": 2,
+  "words": 60,
+  "chars": 341,
+  "output_tokens": 227,
+  "input_tokens": 23845,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0011,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Run `git reset --soft HEAD~1`. This moves `HEAD` back one commit and leaves the changes staged, so you can recommit them.\n\n- To keep the changes but unstage them, use `git reset HEAD~1` (the default `--mixed` mode).\n- If the commit was already pushed, don't reset it. Use `git revert HEAD` instead, or the push will diverge from your branch."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 6,
+  "rep": 1,
+  "words": 111,
+  "chars": 659,
+  "output_tokens": 223,
+  "input_tokens": 23855,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0013,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "SQLite is the better fit for ~10 internal users, as long as the tool runs on one server and the data isn't shared with other services.\n\n- **SQLite:** No server to run or back up separately, and it handles this read/write load easily. Back up by copying the file or using `VACUUM INTO`.\n- **Postgres:** Worth it if you need multiple app servers or containers writing concurrently, you already run Postgres, or you want features like row-level security, LISTEN/NOTIFY, or external BI tools connecting directly.\n\nPick SQLite unless one of those Postgres conditions applies. Migrating later is manageable if you keep to standard SQL and use an ORM or query layer."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 6,
+  "rep": 2,
+  "words": 121,
+  "chars": 680,
+  "output_tokens": 218,
+  "input_tokens": 23855,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.0013,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "SQLite is the better fit for ~10 internal users, as long as the tool runs on one machine and doesn't need multiple app servers writing concurrently.\n\nPick Postgres instead if any of these apply:\n- You run multiple app instances or containers that write to the same database.\n- You want the database on a separate host, or you need managed backups and replication.\n- You expect real concurrent writes, or the tool will grow well past this scale.\n- Your team already runs Postgres and has the tooling for it.\n\nOtherwise, SQLite is simpler: no server to run, the file is trivially backed up, and it handles this load easily. Enable WAL mode so reads don't block the occasional write."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 9,
+  "rep": 1,
+  "words": 67,
+  "chars": 379,
+  "output_tokens": 522,
+  "input_tokens": 102970,
+  "tool_calls": 3,
+  "tools": [
+   "Bash",
+   "Bash",
+   "Read"
+  ],
+  "cost_usd": 0.0028,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "It fails because `cfg[\"port\"]` is the string `\"8080\"`, not an integer. `json.loads` keeps the quoted value as a string, so line 4 tries `\"8080\" + 1`, and Python can't add a str and an int:\n\n```\nTypeError: can only concatenate str (not \"int\") to str\n```\n\nFix it by converting first: `print(int(cfg[\"port\"]) + 1)`, or change the JSON to `'{\"port\": 8080}'` so the value is a number."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 9,
+  "rep": 2,
+  "words": 62,
+  "chars": 362,
+  "output_tokens": 440,
+  "input_tokens": 76427,
+  "tool_calls": 2,
+  "tools": [
+   "PowerShell",
+   "Read"
+  ],
+  "cost_usd": 0.0024,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "It fails because `cfg[\"port\"]` is the string `\"8080\"`, not a number. `json.loads` keeps the quotes in `'{\"port\": \"8080\"}'` as a JSON string, and Python can't add an int to a str, so `\"8080\" + 1` raises `TypeError`.\n\nFix on line 4 by converting first:\n\n```python\nprint(int(cfg[\"port\"]) + 1)\n```\n\nOr change line 3 so the JSON value is a number: `'{\"port\": 8080}'`."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 10,
+  "rep": 1,
+  "words": 30,
+  "chars": 179,
+  "output_tokens": 333,
+  "input_tokens": 76140,
+  "tool_calls": 2,
+  "tools": [
+   "Bash",
+   "Read"
+  ],
+  "cost_usd": 0.0023,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    false,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` defines three functions:\n\n- `add(a, b)`\n- `subtract(a, b)`\n- `average(values)`\n\n`subtract` returns `a + b`, so it adds instead of subtracting. The fix is `return a - b`."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 10,
+  "rep": 2,
+  "words": 40,
+  "chars": 235,
+  "output_tokens": 334,
+  "input_tokens": 76053,
+  "tool_calls": 2,
+  "tools": [
+   "Glob",
+   "Bash"
+  ],
+  "cost_usd": 0.0023,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`calc.py` defines three functions:\n\n- `add(a, b)` (line 1)\n- `subtract(a, b)` (line 5)\n- `average(values)` (line 9)\n\n`subtract` has a bug: it returns `a + b` (line 6), not `a - b`. `average` raises `ZeroDivisionError` on an empty list."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 11,
+  "rep": 1,
+  "words": 87,
+  "chars": 476,
+  "output_tokens": 2607,
+  "input_tokens": 192900,
+  "tool_calls": 12,
+  "tools": [
+   "Grep",
+   "Bash",
+   "Read",
+   "Read",
+   "Grep",
+   "Edit",
+   "Edit",
+   "Edit",
+   "Bash",
+   "Bash",
+   "Grep",
+   "Bash"
+  ],
+  "cost_usd": 0.0053,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Renamed `average` to `mean` in all three places: the definition in `calc.py`, and the import and the assertion in `test_calc.py`. No `average` references remain in the directory.\n\nThe test still fails, but not because of the rename. `subtract` in `calc.py` returns `a + b`, so `subtract(5, 3)` gives 8 instead of 2. That bug was already there before my change. I left it alone since it's outside a rename. Changing `a + b` to `a - b` would fix it; say the word and I'll do it."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "Concise",
+  "prompt": 11,
+  "rep": 2,
+  "words": 148,
+  "chars": 889,
+  "output_tokens": 2762,
+  "input_tokens": 223855,
+  "tool_calls": 13,
+  "tools": [
+   "Grep",
+   "Bash",
+   "Read",
+   "Read",
+   "Glob",
+   "Edit",
+   "Edit",
+   "Edit",
+   "Bash",
+   "Bash",
+   "Grep",
+   "Bash",
+   "Bash"
+  ],
+  "cost_usd": 0.0058,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": false
+  },
+  "task_ok": true,
+  "reply": "Now I'll run the tests and confirm nothing else references `average`.\nThe `-I` flag blocks the script directory from being on the import path, so I'll rerun without it. These are the user's own files, not downloads.\n`average` is renamed to `mean` in `calc.py` and `test_calc.py`, and no `average` references remain. The test still fails, but on `subtract`, not on the rename.\n\n- `subtract` returns `a + b` (`calc.py:6`), so `subtract(5, 3)` gives 8 and the assertion on line 4 of `test_calc.py` fails. This was already broken before my change. I didn't fix it because it's outside the rename; it's a one-character change (`a - b`) if you want it.\n- The `mean` assertion is never reached because the script stops at `subtract`. I checked directly: `mean([2, 4])` returns `3.0`, so it passes.\n\nNothing else in the repo referenced `average`. I didn't touch `broken.py` or the `.claude` files."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 1,
+  "rep": 1,
+  "words": 19,
+  "chars": 137,
+  "output_tokens": 49,
+  "input_tokens": 23464,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.001,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Merge: joins branches, keeps history, one merge commit.\nRebase: replays your commits atop another base, linear history, rewrites commits."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 1,
+  "rep": 2,
+  "words": 24,
+  "chars": 166,
+  "output_tokens": 62,
+  "input_tokens": 23464,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.001,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Merge: joins branches, keeps history, adds merge commit.\nRebase: replays your commits onto new base, linear history, rewrites commit hashes, avoid on shared branches."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 2,
+  "rep": 1,
+  "words": 26,
+  "chars": 155,
+  "output_tokens": 746,
+  "input_tokens": 101844,
+  "tool_calls": 4,
+  "tools": [
+   "Bash",
+   "Bash",
+   "Edit",
+   "Bash"
+  ],
+  "cost_usd": 0.0027,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Fixed. `subtract` in `calc.py` returned `a + b`; now `a - b`. `python test_calc.py` prints `ok`.\n\nNote: pytest isn't installed, so I ran the file directly."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 2,
+  "rep": 2,
+  "words": 45,
+  "chars": 286,
+  "output_tokens": 1309,
+  "input_tokens": 156822,
+  "tool_calls": 7,
+  "tools": [
+   "Bash",
+   "Bash",
+   "Bash",
+   "Read",
+   "Read",
+   "Edit",
+   "Bash"
+  ],
+  "cost_usd": 0.0037,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "The bug is in `subtract`: it adds instead of subtracting.\nFixed `subtract` in `calc.py`: it was returning `a + b`, now `a - b`. `python test_calc.py` prints `ok`.\n\nPytest reports \"no tests ran\" because `test_calc.py` uses module-level asserts, not `test_*` functions. I left that alone."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 3,
+  "rep": 1,
+  "words": 25,
+  "chars": 161,
+  "output_tokens": 435,
+  "input_tokens": 100869,
+  "tool_calls": 3,
+  "tools": [
+   "Glob",
+   "Glob",
+   "Read"
+  ],
+  "cost_usd": 0.0024,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Defines `add`, `subtract`, `average`. Bugs: `subtract` (line 6) returns `a + b`, should be `a - b`. `average` (line 10) raises `ZeroDivisionError` on empty list."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 3,
+  "rep": 2,
+  "words": 23,
+  "chars": 138,
+  "output_tokens": 394,
+  "input_tokens": 75065,
+  "tool_calls": 3,
+  "tools": [
+   "Glob",
+   "Glob",
+   "Read"
+  ],
+  "cost_usd": 0.0021,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    false,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Simple math helpers. Bugs:\n- `subtract` returns `a + b` (line 6). Should be `a - b`.\n- `average([])` raises `ZeroDivisionError` (line 10)."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 4,
+  "rep": 1,
+  "words": 40,
+  "chars": 240,
+  "output_tokens": 1189,
+  "input_tokens": 103850,
+  "tool_calls": 5,
+  "tools": [
+   "Bash",
+   "Edit",
+   "Edit",
+   "Bash",
+   "Bash"
+  ],
+  "cost_usd": 0.0031,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Added `multiply(a, b)` to `calc.py` and a `multiply(3, 4) == 12` assert in `test_calc.py`. Test run fails before reaching it: `subtract(5, 3)` returns 8 (`return a + b`), a pre-existing bug. Multiply passes alone. Fix `subtract` to `a - b`?"
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 4,
+  "rep": 2,
+  "words": 43,
+  "chars": 266,
+  "output_tokens": 1466,
+  "input_tokens": 184625,
+  "tool_calls": 9,
+  "tools": [
+   "Glob",
+   "Glob",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "Bash",
+   "Bash",
+   "Bash"
+  ],
+  "cost_usd": 0.0041,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": false
+  },
+  "task_ok": true,
+  "reply": "Added `multiply` to `calc.py` with a test in `test_calc.py`. Test run fails before reaching it.\n\n- `test_calc.py:4` fails: `subtract(5, 3)` returns 8 because `calc.py:6` is `a + b`. Not fixed, since you didn't ask.\n- `multiply(3, 4) == 12` passes when checked alone."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 5,
+  "rep": 1,
+  "words": 15,
+  "chars": 95,
+  "output_tokens": 221,
+  "input_tokens": 49100,
+  "tool_calls": 1,
+  "tools": [
+   "Bash"
+  ],
+  "cost_usd": 0.0023,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Run `git reset --soft HEAD~1`. Your changes stay staged. Use `--mixed` instead to unstage them."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 5,
+  "rep": 2,
+  "words": 15,
+  "chars": 96,
+  "output_tokens": 124,
+  "input_tokens": 23466,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.001,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`git reset --soft HEAD~1`\n\nKeeps changes staged. Use `git reset HEAD~1` to unstage them instead."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 6,
+  "rep": 1,
+  "words": 28,
+  "chars": 170,
+  "output_tokens": 67,
+  "input_tokens": 23476,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.001,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "SQLite. ~10 users, one app server, low write volume: simpler ops, no separate DB service. Pick Postgres if you need multi-host writes, heavy concurrency, or plan to grow."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 6,
+  "rep": 2,
+  "words": 31,
+  "chars": 198,
+  "output_tokens": 73,
+  "input_tokens": 23476,
+  "tool_calls": 0,
+  "tools": [],
+  "cost_usd": 0.001,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "SQLite. ~10 users, one small box, low write contention. Zero ops, single file backup. Switch to Postgres only if you need multiple app servers, heavy concurrent writes, or existing Postgres tooling."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 9,
+  "rep": 1,
+  "words": 35,
+  "chars": 179,
+  "output_tokens": 274,
+  "input_tokens": 49209,
+  "tool_calls": 1,
+  "tools": [
+   "PowerShell"
+  ],
+  "cost_usd": 0.0018,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    false,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "`cfg[\"port\"]` is a string, so `+ 1` fails. Line 4 of `broken.py` does `cfg[\"port\"] + 1`, which can't add an int to a str. Fix: `int(cfg[\"port\"]) + 1`, or store the port as an int."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 9,
+  "rep": 2,
+  "words": 33,
+  "chars": 179,
+  "output_tokens": 312,
+  "input_tokens": 49209,
+  "tool_calls": 1,
+  "tools": [
+   "PowerShell"
+  ],
+  "cost_usd": 0.0018,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "Line 4 does `cfg[\"port\"] + 1`, but `cfg[\"port\"]` is a string, so `str + int` raises `TypeError`. Convert it with `int(cfg[\"port\"]) + 1`, or store the port as an int in the config."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 10,
+  "rep": 1,
+  "words": 15,
+  "chars": 101,
+  "output_tokens": 244,
+  "input_tokens": 74856,
+  "tool_calls": 2,
+  "tools": [
+   "Glob",
+   "Read"
+  ],
+  "cost_usd": 0.002,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": false
+  },
+  "task_ok": null,
+  "reply": "`add(a, b)`, `subtract(a, b)`, `average(values)`. `subtract` returns `a + b`, which looks like a bug."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 10,
+  "rep": 2,
+  "words": 24,
+  "chars": 127,
+  "output_tokens": 285,
+  "input_tokens": 74916,
+  "tool_calls": 2,
+  "tools": [
+   "Glob",
+   "Read"
+  ],
+  "cost_usd": 0.0021,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": null,
+  "reply": "- `add(a, b)` (line 1)\n- `subtract(a, b)` (line 5)\n- `average(values)` (line 9)\n\nNote: `subtract` returns `a + b`, not `a - b`."
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 11,
+  "rep": 1,
+  "words": 36,
+  "chars": 207,
+  "output_tokens": 1210,
+  "input_tokens": 102927,
+  "tool_calls": 6,
+  "tools": [
+   "Grep",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "Bash"
+  ],
+  "cost_usd": 0.0031,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    false,
+    false
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Renamed `average` to `mean` in `calc.py` and `test_calc.py`. No other references.\n\nThe test still fails at `subtract(5, 3) == 2`: `subtract` returns `a + b`. That bug predates this change. Fix it to `a - b`?"
+ },
+ {
+  "round": "claude-haiku-5-5",
+  "env": "clean",
+  "model": "claude-haiku-5-5",
+  "style": "T1",
+  "prompt": 11,
+  "rep": 2,
+  "words": 58,
+  "chars": 319,
+  "output_tokens": 1497,
+  "input_tokens": 185659,
+  "tool_calls": 9,
+  "tools": [
+   "Grep",
+   "Read",
+   "Read",
+   "Edit",
+   "Edit",
+   "Edit",
+   "Bash",
+   "Bash",
+   "Bash"
+  ],
+  "cost_usd": 0.0042,
+  "is_error": false,
+  "grade": {
+   "criteria": [
+    true,
+    true,
+    true
+   ],
+   "clear": true
+  },
+  "task_ok": true,
+  "reply": "Renamed `average` to `mean` in `calc.py` and `test_calc.py`. No other references existed.\n\nThe import and `mean([2, 4])` check now pass. The test still fails on line 4, `subtract(5, 3) == 2`, because `subtract` returns `a + b`. That bug predates this change, so I left it alone. Say the word and I'll fix it to `a - b`."
  }
 ]

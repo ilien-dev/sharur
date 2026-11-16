@@ -9,7 +9,7 @@
 
 Sharur makes Claude Code answer in one or two lines and use fewer tool calls, so you spend fewer tokens and less money per task. It is a single line of text that you drop into `~/.claude/output-styles/`.
 
-Across 9 test prompts on Claude Fable 5.2 it used 48% fewer output tokens than the built-in Concise style, wrote 77% fewer words, made 38% fewer tool calls and cost 28% less per task. An automated grader found the replies still had the information they needed. The benchmark scripts are in `bench/`, so you can repeat every run.
+Across 9 test prompts on Claude Fable 5.2 it used 48% fewer output tokens than the built-in Concise style, wrote 77% fewer words, made 38% fewer tool calls and cost 28% less per task. An automated grader found the replies still had the information they needed. On Claude Opus 5.5, Sonnet 5.5 and Haiku 5.5 it cost 18% to 23% less per task and wrote 63% to 76% fewer words. The benchmark scripts are in `bench/`, so you can repeat every run.
 
 Use it to reduce Claude Code token usage and cost, or when you want a terse "caveman mode" that still reports test results, errors and file names.
 
@@ -107,6 +107,24 @@ I also ran four of the prompts in a real setup, with my own plugins and session 
 | Output tokens per task | 728 | 431 | -41% |
 | Cost per task (USD) | 0.358 | 0.309 | -14% |
 
+### Other models
+
+The same 9 prompts, clean setup, 2 runs per prompt and style (18 runs per cell), on Claude Code 2.1.325. Change against Concise:
+
+| | Fable 5.2 | Opus 5.5 | Sonnet 5.5 | Haiku 5.5 |
+|---|---|---|---|---|
+| Words per reply | -77% | -76% | -63% | -65% |
+| Output tokens per task | -48% | -29% | -35% | -33% |
+| Output tokens per question (no tools) | -75% | -82% | -70% | -57% |
+| Tool calls per task | -38% | +2% | -32% | -18% |
+| Cost per task | -28% | -23% | -23% | -18% |
+| Required facts present (Concise → Sharur) | 98% → 100% | 98% → 90% | 100% → 96% | 98% → 92% |
+| Tasks done correctly (Concise, Sharur) | 6/6, 12/12 | 6/6, 6/6 | 6/6, 6/6 | 6/6, 6/6 |
+
+Every model gets cheaper and every model gets shorter replies. The biggest cut is on plain questions, where Opus 5.5 went from 357 output tokens to 63: the reply is the answer and nothing else. The 379 fewer input tokens per request hold on all four models, because the style text is the same.
+
+The cost of that is a few facts. On Opus, Sonnet and Haiku the grader marked more facts missing in Sharur's replies than in Concise's, such as which files a rename touched or whether the tests were run. Some of those marks are grader noise (it marked "I didn't rerun the tests" as not stating the test status), but not all of them. Opus 5.5 also made as many tool calls as with Concise, so its savings come from the replies alone.
+
 ## How it was tested
 
 Each run is one headless session: `claude -p "<prompt>" --output-format stream-json`, started in a fresh copy of a small Python project (`bench/fixture`). The style is the only thing that changes between runs. The clean runs use `--setting-sources project`, which leaves out user plugins, hooks and memory files.
@@ -146,7 +164,8 @@ Most output tokens in a coding task are tool calls, so a limit on reply text sto
 - "Fewest tool calls" changes how the model works. On the rename prompt it used one shell command to edit both files where Concise read and edited each one. That was correct in all 12 graded tasks here, and it is also the kind of shortcut that can go wrong where reading more would have helped. If you want only the shorter replies, delete the last two sentences of the style; that is candidate `cavG` in the tables.
 - The grader is a language model. Two candidates with the same reply rules scored 89% and 97% on clarity, which is the size of its noise.
 - "Destructive confirms" was not exercised. The one deletion prompt I tried ran without a confirmation under every style, Concise included, because the headless permission mode allowed it.
-- One model family and one CLI version: Claude Fable 5.2 (Claude Opus 5.5 in round 1) on Claude Code 2.1.325, in November 2026.
+- One CLI version: Claude Code 2.1.325, in November 2026. Sharur was tuned on Claude Fable 5.2 (Claude Opus 5.5 in round 1); Opus 5.5, Sonnet 5.5 and Haiku 5.5 got only the final style, with 2 runs per prompt.
+- On models other than Fable 5.2 the grader found 90% to 96% of the required facts, against 98% to 100% for Concise. If a missing file name or test status would hurt you, check the reply or stay on Concise.
 - The word "Caveman" is part of the tested text, so the installed file keeps it.
 
 ## Run it yourself
@@ -160,6 +179,8 @@ node grade.ts                    # grade the replies with Haiku
 node export.ts out:2 > ../results/runs.json
 node summarize.ts
 ```
+
+To run another model, set `MODEL`, for example `MODEL=claude-sonnet-5-5 bash matrix.sh 2 Concise T1`; it defaults to `claude-fable-5-2`. Move `out/` and `runs/` aside between models, because run ids do not include the model, and pass the model as the round to `export.ts` (`node export.ts out:claude-sonnet-5-5`).
 
 `mkstyle.sh NAME "text"` adds a candidate to the fixture. `one.sh` holds the model and the permission flags. Raw session logs are written to `bench/out/` and are left out of this repository because their first event lists the plugins and paths of the machine that ran them; `export.ts` keeps the reply text, the token counts, the tool names and the grades.
 
