@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.gif">
-    <img src="assets/hero-light.gif" alt="Sharur, an output style for Claude Code: on Claude Opus 5.5 it used 29% fewer output tokens, 76% fewer words and 23% less cost per task than Concise, and kept 90% of the required facts" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
+    <img src="assets/hero-light.svg" alt="Sharur, an output style for Claude Code: up to 48% fewer output tokens than Concise. Fable 5.2 −48%, Sonnet 5.5 −35%, Haiku 5.5 −33%, Opus 5.5 −29%." width="100%">
   </picture>
 </p>
 
