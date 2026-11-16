@@ -53,4 +53,22 @@ Same four prompts in the clean environment, for comparison
 | Concise | 8 | 116.1 | 774 | 320 | 3.63 | 0.160 | 100% | 100% | 4/4 |
 | T1 | 16 | 21.9 | 326 | 61 | 1.88 | 0.111 | 100% | 100% | 8/8 |
 
-runs: 344, total cost: $41.31
+Other models: claude-opus-5-5, clean environment, 9 prompts, 2 runs each
+| style | runs | words/reply | output tokens/task | output tokens/question | tool calls/task | cost/task (USD) | info kept | clear | tasks ok |
+|---|---|---|---|---|---|---|---|---|---|
+| Concise | 18 | 97.6 | 591 | 357 | 2.72 | 0.088 | 98% | 100% | 6/6 |
+| T1 | 18 | 23.1 | 417 | 63 | 2.78 | 0.067 | 90% | 94% | 6/6 |
+
+Other models: claude-sonnet-5-5, clean environment, 9 prompts, 2 runs each
+| style | runs | words/reply | output tokens/task | output tokens/question | tool calls/task | cost/task (USD) | info kept | clear | tasks ok |
+|---|---|---|---|---|---|---|---|---|---|
+| Concise | 18 | 71.2 | 471 | 208 | 2.78 | 0.040 | 100% | 94% | 6/6 |
+| T1 | 18 | 26.3 | 305 | 63 | 1.89 | 0.031 | 96% | 100% | 6/6 |
+
+Other models: claude-haiku-5-5, clean environment, 9 prompts, 2 runs each
+| style | runs | words/reply | output tokens/task | output tokens/question | tool calls/task | cost/task (USD) | info kept | clear | tasks ok |
+|---|---|---|---|---|---|---|---|---|---|
+| Concise | 18 | 86.1 | 821 | 229 | 3.61 | 0.003 | 98% | 94% | 6/6 |
+| T1 | 18 | 29.7 | 553 | 99 | 2.94 | 0.002 | 92% | 89% | 6/6 |
+
+runs: 452, total cost: $45.46

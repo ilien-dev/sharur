@@ -26,4 +26,6 @@ table('Rounds 2-5: claude-fable-5-2, clean environment, prompts 1-6', sel('2', '
 table('Rounds 3-5: claude-fable-5-2, clean environment, 9 prompts (styles run on all 9)', sel('2', 'clean').filter(r => !['cavC', 'cavD', 'cavE', 'cavF'].includes(r.style)), [1, 2, 3, 4, 5, 6, 9, 10, 11]);
 table('Real environment (plugins, hooks, Spanish replies), claude-fable-5-2, prompts 1, 2, 6, 11', sel('2', 'full'), [1, 2, 6, 11]);
 table('Same four prompts in the clean environment, for comparison', sel('2', 'clean').filter(r => ['Concise', 'T1'].includes(r.style)), [1, 2, 6, 11]);
+for (const m of ['claude-opus-5-5', 'claude-sonnet-5-5', 'claude-haiku-5-5'])
+  table(`Other models: ${m}, clean environment, 9 prompts, 2 runs each`, runs.filter(r => r.round === m), [1, 2, 3, 4, 5, 6, 9, 10, 11]);
 console.log(`\nruns: ${runs.length}, total cost: $${runs.reduce((s, r) => s + r.cost_usd, 0).toFixed(2)}`);

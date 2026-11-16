@@ -1,4 +1,4 @@
 bench/out*/
-bench/runs/
+bench/runs*/
 bench/grader/
 node_modules/
