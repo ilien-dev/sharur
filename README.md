@@ -1,6 +1,14 @@
-# Sharur
+<p align="center">
+  <img src="assets/hero.svg" alt="Sharur, an output style for Claude Code: 48% fewer output tokens, 77% fewer words and 38% fewer tool calls than Concise, with every required fact kept" width="100%">
+</p>
 
-An output style for Claude Code that is one line long. Across 9 test prompts on Claude Fable 5.2 it used 48% fewer output tokens than the built-in Concise style and wrote 77% fewer words, and an automated grader found the replies still had the information they needed.
+# Sharur: a Claude Code output style that saves tokens
+
+Sharur makes Claude Code answer in one or two lines and use fewer tool calls, so you spend fewer tokens and less money per task. It is a single line of text that you drop into `~/.claude/output-styles/`.
+
+Across 9 test prompts on Claude Fable 5.2 it used 48% fewer output tokens than the built-in Concise style, wrote 77% fewer words, made 38% fewer tool calls and cost 28% less per task. An automated grader found the replies still had the information they needed. The benchmark scripts are in `bench/`, so you can repeat every run.
+
+Use it to reduce Claude Code token usage and cost, or when you want a terse "caveman mode" that still reports test results, errors and file names.
 
 Sharur is the mace of the Sumerian god Ninurta. The name means "smasher of thousands".
 
@@ -21,7 +29,7 @@ Install the Sharur output style for Claude Code.
 
 ---
 name: Sharur
-description: Minimal replies, fewest tool calls. 48% fewer output tokens than Concise in tests.
+description: Caveman replies of 1-2 lines, exact code and errors, as few tool calls as possible.
 keep-coding-instructions: true
 ---
 
