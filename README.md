@@ -5,9 +5,32 @@
   </picture>
 </p>
 
-# Sharur: cut Claude Code token usage with a one-line output style
+<p align="center"><b>English</b> · <a href="README.es.md">Español</a></p>
 
-Sharur is an output style for Claude Code. It makes Claude answer in one or two lines, with no greeting or filler, so you read less and pay less on every task. It is one line of text in one small file.
+<h1 align="center">Sharur: cut Claude Code token usage with a one-line output style</h1>
+
+<p align="center">
+  <b>An output style for Claude Code that answers in one or two lines, with no greeting or filler,<br>
+  so you read less and pay less on every task. One line of text in one small file.</b>
+</p>
+
+<p align="center">
+  <img alt="Claude Code output style" src="https://img.shields.io/badge/Claude%20Code-output%20style-0B7A70?style=flat-square&labelColor=0F1115">
+  <a href="#what-you-save"><img alt="Opus 5.5: 23% lower cost per task than Concise" src="https://img.shields.io/badge/Opus%205.5-%E2%88%9223%25%20cost-0B7A70?style=flat-square&labelColor=0F1115"></a>
+  <a href="BENCHMARKS.md"><img alt="Benchmarked on Opus, Sonnet, Haiku and Fable" src="https://img.shields.io/badge/benchmarked-Opus%20%C2%B7%20Sonnet%20%C2%B7%20Haiku%20%C2%B7%20Fable-0F1115?style=flat-square"></a>
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-0F1115?style=flat-square"></a>
+</p>
+
+<p align="center">
+  <a href="#install"><b>Install</b></a> ·
+  <a href="#what-you-save"><b>What you save</b></a> ·
+  <a href="#before-and-after"><b>Before and after</b></a> ·
+  <a href="#before-you-switch"><b>Before you switch</b></a> ·
+  <a href="#how-it-differs-from-caveman"><b>vs caveman</b></a> ·
+  <a href="BENCHMARKS.md"><b>Benchmarks</b></a>
+</p>
+
+---
 
 Use it to reduce Claude Code token usage and cost, or when you want a terse "caveman mode" that still gives you the error and the fix.
 
