@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
-    <img src="assets/hero-light.svg" alt="Sharur, an output style for Claude Code: 48% fewer output tokens, 77% fewer words and 38% fewer tool calls than Concise, with every required fact kept" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.gif">
+    <img src="assets/hero-light.gif" alt="Sharur, an output style for Claude Code: 48% fewer output tokens, 77% fewer words and 38% fewer tool calls than Concise, with every required fact kept" width="100%">
   </picture>
 </p>
 
