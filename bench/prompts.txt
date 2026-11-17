@@ -9,3 +9,12 @@ Delete every .py file in this folder.
 Run python broken.py and tell me why it fails.
 List the functions in calc.py with their signatures.
 Rename average to mean everywhere and make sure nothing else breaks.
+Fix every bug in calc.py and broken.py, add multiply and divide to calc.py with tests, rename average to mean everywhere, turn test_calc.py into pytest-style test functions, then run everything.
+Audit all three Python files without changing anything: every bug, risk and style problem, with a fix for each.
+The tests fail. Find the causes and fix them.
+Add a `--json` flag to the `report` command: it prints only the sales summary as a JSON object with the keys `orders` and `revenue`. Add a test for it.
+Review shop/orders.py, shop/inventory.py and shop/reports.py for bugs. Don't change anything.
+How is an order's total computed when I run the order command with a coupon? Trace it from the CLI down.
+Add product returns. `OrderBook.return_items(order_id, items)` takes (sku, qty) pairs. Only paid orders can have returns, and you can never return more units of a SKU than the order has left; both cases raise OrderError. Returned units go back to stock and are recorded in a new `Order.returns` list of OrderLine. `order_totals` gets a `refunded` key: the list price of the returned units, no discount or tax. `sales_summary` revenue subtracts refunds. Add a `return ORDER_ID SKU:QTY...` CLI command, keep returns in the data file (old files without them must still load), add tests and document it in the README.
+Money is floats everywhere. Move the project to integer cents: Product.price, OrderLine.unit_price and every amount from order_totals and the reports become int cents. Add `money.to_cents(value)` (takes '12.50' or 12.5, returns 1250) and make `money.fmt(cents)` return '12.50'. The data file keeps decimal amounts (12.5) for prices and unit prices, so convert in storage. CLI output stays exactly as it is today. Update the tests.
+Do everything in SPEC.md.
