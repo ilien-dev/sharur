@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
-    <img src="assets/hero-light.svg" alt="Sharur, an output style for Claude Code: up to 48% fewer output tokens than Concise. Fable 5.2 −48%, Sonnet 5.5 −35%, Haiku 5.5 −33%, Opus 5.5 −29%." width="100%">
+    <img src="assets/hero-light.svg" alt="Sharur, an output style for Claude Code: shorter replies, up to 48% fewer output tokens than Concise. One line in sharur.md sets a limit inside a session: a question about git rebase and merge is answered in 25 words, where Concise writes 203. Fable 5.2 −48%, Sonnet 5.5 −35%, Haiku 5.5 −33%, Opus 5.5 −29%." width="100%">
   </picture>
 </p>
 

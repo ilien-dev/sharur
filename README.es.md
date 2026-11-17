@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
-    <img src="assets/hero-light.svg" alt="Sharur, un output style para Claude Code: hasta 48% menos tokens de salida que Concise. Fable 5.2 −48%, Sonnet 5.5 −35%, Haiku 5.5 −33%, Opus 5.5 −29%." width="100%">
+    <img src="assets/hero-light.svg" alt="Sharur, un output style para Claude Code: respuestas más cortas, hasta 48% menos tokens de salida que Concise. Una línea en sharur.md pone un límite en la sesión: una pregunta sobre git rebase y merge se responde en 25 palabras, donde Concise escribe 203. Fable 5.2 −48%, Sonnet 5.5 −35%, Haiku 5.5 −33%, Opus 5.5 −29%." width="100%">
   </picture>
 </p>
 
