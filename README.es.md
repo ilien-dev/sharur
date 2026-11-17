@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
-    <img src="assets/hero-light.svg" alt="Sharur, un output style para Claude Code: comparado con Concise en Opus 5.5, 21% menos costo en las tareas de programación de cada día, 10% en las grandes y 6% en una enorme, con los mismos tests ocultos aprobados y los mismos datos en la respuesta." width="100%">
+    <img src="assets/hero-light.svg" alt="Sharur, un output style para Claude Code. Comparado con Concise en Opus 5.5, las tareas de programación de cada día cuestan 21% menos y sus respuestas tienen 54% menos palabras que leer; las tareas grandes cuestan 10% menos y una enorme 6% menos, con los mismos tests ocultos aprobados." width="100%">
   </picture>
 </p>
 
@@ -15,9 +15,10 @@
 </p>
 
 <p align="center">
-  <img alt="Output style para Claude Code" src="https://img.shields.io/badge/Claude%20Code-output%20style-0B7A70?style=flat-square&labelColor=0F1115">
-  <a href="#qué-ahorras"><img alt="Opus 5.5: 21% menos costo que Concise en las tareas de cada día" src="https://img.shields.io/badge/Opus%205.5-%E2%88%9221%25%20costo%20en%20tareas%20diarias-0B7A70?style=flat-square&labelColor=0F1115"></a>
-  <a href="BENCHMARKS.md"><img alt="Verificado con tests ocultos" src="https://img.shields.io/badge/verificado%20con-tests%20ocultos-0F1115?style=flat-square"></a>
+  <a href="#qué-ahorras"><img alt="Tareas de cada día: 21% menos costo que Concise" src="https://img.shields.io/badge/tareas%20diarias-%E2%88%9221%25%20costo-0B7A70?style=flat-square&labelColor=0F1115"></a>
+  <a href="#qué-ahorras"><img alt="Tareas de cada día: 54% menos palabras que leer que con Concise" src="https://img.shields.io/badge/palabras%20que%20leer-%E2%88%9254%25-1F6FEB?style=flat-square&labelColor=0F1115"></a>
+  <a href="BENCHMARKS.md"><img alt="Tests ocultos: todos aprobados" src="https://img.shields.io/badge/tests%20ocultos-todos%20aprobados-2DA44E?style=flat-square&labelColor=0F1115"></a>
+  <img alt="Output style para Claude Code" src="https://img.shields.io/badge/Claude%20Code-output%20style-8250DF?style=flat-square&labelColor=0F1115">
   <a href="LICENSE"><img alt="Licencia: MIT" src="https://img.shields.io/badge/licencia-MIT-0F1115?style=flat-square"></a>
 </p>
 
@@ -25,14 +26,17 @@
   <a href="#instalación"><b>Instalación</b></a> ·
   <a href="#qué-ahorras"><b>Qué ahorras</b></a> ·
   <a href="#antes-y-después"><b>Antes y después</b></a> ·
+  <a href="#cómo-se-compara"><b>vs caveman, rtk, ponytail</b></a> ·
   <a href="#antes-de-cambiarte"><b>Antes de cambiarte</b></a> ·
-  <a href="#en-qué-se-diferencia-de-caveman"><b>vs caveman</b></a> ·
   <a href="BENCHMARKS.md"><b>Benchmarks (en inglés)</b></a>
 </p>
 
 ---
 
-Úsalo para reducir el consumo de tokens y el costo de Claude Code, o si quieres un "caveman mode" escueto que aun así te da el error y la solución.
+> [!TIP]
+> **En las tareas de programación de cada día, Sharur cuesta un 21% menos que el estilo Concise de Claude Code, y sus respuestas tienen un 54% menos de palabras que leer.** Todos los tests ocultos siguieron pasando. Medido en Claude Opus 5.5; el método y cada número están en [BENCHMARKS.md](BENCHMARKS.md).
+
+Úsalo para gastar menos de tu plan de Claude en cada tarea y para leer cada respuesta más rápido: el resultado, el estado de los tests y lo que salió distinto, sin el párrafo de relleno alrededor.
 
 ## Qué ahorras
 
@@ -49,7 +53,12 @@ En el trabajo de programación de todos los días, Sharur cuesta un 21% menos qu
 
 Cada tarea se corrió 3 veces con cada estilo, y cada número es la mediana de los cambios por tarea. El costo es el que reporta la CLI, así que incluye el texto del propio estilo, que se lee en cada petición. Sharur salió más barato en las 13 tareas. Unos tests ocultos revisaron los archivos que dejó cada corrida, y todas los pasaron con los dos estilos. En las tareas medianas a enormes, un evaluador encontró los mismos datos obligatorios en las respuestas de ambos estilos.
 
+La columna de palabras es el tiempo que pasas leyendo. En las tareas medianas, Concise escribió una mediana de 129 a 380 palabras por tarea y Sharur de 57 a 203, con los mismos datos.
+
 Las preguntas son lo que más ahorra, pero pocas sesiones son sobre todo preguntas, así que no esperes un 37%. Cuanto más grande la tarea, menor el ahorro: una sesión larga gasta casi todos sus tokens en código, en llamadas a herramientas y en volver a leer el contexto en cada turno, y un output style no cambia nada de eso. [JetBrains encontró lo mismo](https://blog.jetbrains.com/ai/2026/07/speak-to-ai-agents-like-cavemen-tosave-tokens/) con la skill caveman: anunciaba 65% y midió 8.5% en tareas reales de agente.
+
+> [!NOTE]
+> **Por qué la tarea enorme marca 0% en tokens de salida y aun así 6% menos de costo.** Ahí casi todo lo que escribe el modelo es código: unos 13,000 tokens de salida por corrida, de los que el texto de la respuesta es cerca del 3%. La respuesta de Sharur tuvo 28% menos palabras, unos 120 tokens, que se pierden en la variación entre corridas (de 9,700 a 17,400 tokens de salida con Concise). El costo bajó por otra razón: casi todo es el contexto que se vuelve a leer en cada llamada, y Sharur hizo 10 llamadas en cada corrida donde Concise hizo de 10 a 14. Con una sola tarea y 3 corridas, ese 6% queda dentro del ruido.
 
 Cómo se midió y cómo repetirlo está en [BENCHMARKS.md](BENCHMARKS.md), en inglés.
 
@@ -119,22 +128,44 @@ mkdir -p ~/.claude/output-styles
 curl -fsSL https://raw.githubusercontent.com/ilien-dev/sharur/main/sharur.md -o ~/.claude/output-styles/sharur.md
 ```
 
-Después elige Sharur en `/config`, en Output style, y abre una sesión nueva. En Windows, `~` es `%USERPROFILE%`. Para usarlo en un solo proyecto, pon el archivo en `.claude/output-styles/` dentro de ese proyecto. Para volver atrás, elige otro estilo en `/config` y borra el archivo.
+Después elige Sharur en `/config`, en Output style.
+
+> [!IMPORTANT]
+> Abre una sesión nueva después de instalarlo: Claude Code lee el output style al empezar la sesión.
+
+En Windows, `~` es `%USERPROFILE%`. Para usarlo en un solo proyecto, pon el archivo en `.claude/output-styles/` dentro de ese proyecto. Para volver atrás, elige otro estilo en `/config` y borra el archivo.
+
+## Cómo se compara
+
+Los tres ahorradores de tokens más populares para Claude Code pasaron por la misma prueba independiente de JetBrains: de 80 a 86 tareas reales de agente, corridas en pares y el costo tomado de la factura.
+
+| | Qué cambia | Qué instalas | Anuncia | Lo que midió JetBrains |
+|---|---|---|---|---|
+| [caveman](https://github.com/JuliusBrussee/caveman), 121 mil estrellas | Cómo habla el agente, más un proxy, un selector de modelo y un servicio en la nube | Un plugin, o un instalador (Node.js 22) que añade una CLI y hooks | 65% menos tokens de salida | [8.5% menos tokens de salida](https://blog.jetbrains.com/ai/2026/07/speak-to-ai-agents-like-cavemen-tosave-tokens/); cerca de 10% menos de costo por tarea, que una sola corrida atípica borró en los totales |
+| [rtk](https://github.com/rtk-ai/rtk), 87 mil estrellas | Reduce la salida de los comandos antes de que el modelo la lea | Un binario de Rust y un hook | De 60 a 90% menos tokens | [Mediana del costo 7.6% más alta](https://blog.jetbrains.com/ai/2026/07/rtk-claude-code-token-savings/) con esfuerzo bajo, sin cambio con esfuerzo alto |
+| [ponytail](https://github.com/DietrichGebert/ponytail), 193 mil estrellas | Hace que el agente escriba menos código | Un plugin con un hook que corre al iniciar la sesión | 54% menos código, 20% menos costo | [15% menos código, 10.3% menos costo](https://blog.jetbrains.com/ai/2026/07/ponytail-skill-claude-tested/) |
+| **Sharur** | **Cómo habla el agente** | **Un archivo Markdown** | **21% menos costo en tareas medianas** | JetBrains todavía no lo ha probado |
+
+Lo que eso significa para ti:
+
+- **No se ejecuta nada en tu máquina.** Ni binario, ni hook, ni proxy, ni cuenta, ni telemetría; la CLI de caveman envía estadísticas de uso por defecto, según su propio README. Para quitar Sharur, borras un archivo.
+- **El límite es un número que el modelo puede seguir.** El README de caveman mide su propia voz un 3% más corta que la instrucción simple "Answer concisely." (10 intentos). Las respuestas de Sharur en tareas medianas tuvieron un 54% menos de palabras que Concise, el estilo corto que trae Claude Code.
+- **Cada número sale de la factura y de tests ocultos.** El costo es el que reporta la CLI, incluido el texto del propio estilo, y los archivos que dejó cada corrida se probaron.
+- **Funciona junto a ponytail.** ponytail recorta el código que escribe el agente y Sharur lo que dice, así que no se pisan. No se han medido juntos.
+
+Dos cosas, para ser justos. Sharur solo cubre Claude Code, mientras que caveman funciona con más de 30 agentes. Y los números de Sharur salen de su propio benchmark de 13 tareas, no de las 86 de JetBrains, así que la última fila no se compara en igualdad de condiciones con las tres de arriba.
 
 ## Antes de cambiarte
 
-- En tareas grandes el ahorro es pequeño: entre 6 y 10% del costo en estas pruebas. Los números grandes vienen de las preguntas y las tareas cortas.
-- Esta versión del estilo solo se midió en Opus 5.5, con 3 corridas por tarea. La versión anterior, de una línea, también se probó en Sonnet 5.5, Haiku 5.5 y Fable 5.2; esta no. Las corridas en Fable 5.2 que se hicieron al ajustarla dieron algo parecido, pero sirvieron para elegir el texto, así que no prueban nada.
-- "Fewest tool calls" cambia cómo trabaja el modelo, no solo cómo habla. Aquí nunca costó un test oculto, pero es lo primero que conviene borrar si ves que el modelo se salta un paso que debía dar.
-- Los informes están escritos para quien ya conoce la tarea. Si necesitas una descripción completa de un cambio, pídela o quédate con Concise.
+> [!WARNING]
+> - En tareas grandes el ahorro es pequeño: entre 6 y 10% del costo en estas pruebas. Los números grandes vienen de las preguntas y las tareas cortas.
+> - Esta versión del estilo solo se midió en Opus 5.5, con 3 corridas por tarea. La versión anterior, de una línea, también se probó en Sonnet 5.5, Haiku 5.5 y Fable 5.2; esta no. Las corridas en Fable 5.2 que se hicieron al ajustarla dieron algo parecido, pero sirvieron para elegir el texto, así que no prueban nada.
+> - "Fewest tool calls" cambia cómo trabaja el modelo, no solo cómo habla. Aquí nunca costó un test oculto, pero es lo primero que conviene borrar si ves que el modelo se salta un paso que debía dar.
+> - Los informes están escritos para quien ya conoce la tarea. Si necesitas una descripción completa de un cambio, pídela o quédate con Concise.
 
 ## Por qué no hay hooks
 
 Los hooks de Claude Code no pueden reescribir una respuesta. Un hook Stop solo puede bloquearla y mandar al modelo a otro turno, que vuelve a leer todo el contexto. Un hook PreToolUse puede recortar la entrada de una herramienta, pero cuando el modelo ya escribió esos tokens y ya se cobraron. En estas corridas el texto de la respuesta fue el 10% de lo que escribió el modelo en las tareas medianas a enormes, y los campos `description` de las herramientas menos del 1%: un hook tiene poco que ahorrar, y el turno extra cuesta más que eso. Un proxy que comprime la salida de las herramientas, rtk, [subió la mediana del costo un 7.6%](https://blog.jetbrains.com/ai/2026/07/rtk-claude-code-token-savings/) en las pruebas de JetBrains. Sharur se queda en un archivo de texto.
-
-## En qué se diferencia de caveman
-
-[caveman](https://github.com/JuliusBrussee/caveman) ataca el mismo problema con todo un kit: un instalador, varias skills y sus propios comandos. Sharur es el texto de arriba y nada más, así que no hay nada que actualizar ni nada que se ejecute en tu máquina.
 
 Sharur es la maza del dios sumerio Ninurta. El nombre significa "el que aplasta a miles".
 
