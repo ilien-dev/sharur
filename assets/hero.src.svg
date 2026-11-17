@@ -8,10 +8,10 @@ muted  #A3A8B0 #555B64
 ghost  #3A404A #BCC7D4
 accent #4FD1C5 #0B7A70
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-label="Sharur, an output style for Claude Code: shorter replies, up to 48% fewer output tokens than Concise. The one line in sharur.md sets a limit inside a session: a question about git rebase and merge is answered in 25 words and 58 tokens, where Concise writes 203 words and 413 tokens. Fable 5.2 −48%, Sonnet 5.5 −35%, Haiku 5.5 −33%, Opus 5.5 −29%.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-label="Sharur, an output style for Claude Code. Against Concise on Opus 5.5 it cut the cost of everyday coding tasks by 21%, large ones by 10% and a huge one by 6%, 12% across the three sizes, with the same hidden tests passed. Asked to add a multiply function with a test, it replied in 37 words, where Concise wrote 89.">
 <style>
 @keyframes drift{to{transform:translate(24px,24px)}}
-@keyframes tick{to{transform:translateX(-2251.2px)}}
+@keyframes tick{to{transform:translateX(-2562.0px)}}
 @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(.72)}}
 @keyframes caret{0%,100%{opacity:1}50%{opacity:0}}
 @keyframes flow{to{stroke-dashoffset:-24}}
@@ -29,13 +29,13 @@ accent #4FD1C5 #0B7A70
 .c1{animation:c1 10s steps(1,end) infinite}
 .c2{animation:c2 10s steps(1,end) infinite}
 .nl{font-variant-ligatures:none}
-@keyframes type1{0%,2%{transform:translateX(-278.4px);animation-timing-function:steps(29,end)}12%,92%{transform:translateX(0);animation-timing-function:steps(29,end)}100%{transform:translateX(-278.4px)}}
-@keyframes type2{0%,12%{transform:translateX(-240.0px);animation-timing-function:steps(25,end)}19%,92%{transform:translateX(0);animation-timing-function:steps(25,end)}100%{transform:translateX(-240.0px)}}
+@keyframes type1{0%,2%{transform:translateX(-326.4px);animation-timing-function:steps(34,end)}12%,92%{transform:translateX(0);animation-timing-function:steps(34,end)}100%{transform:translateX(-326.4px)}}
+@keyframes type2{0%,12%{transform:translateX(-297.6px);animation-timing-function:steps(31,end)}19%,92%{transform:translateX(0);animation-timing-function:steps(31,end)}100%{transform:translateX(-297.6px)}}
 .type1{animation:type1 10s linear infinite}
 .type2{animation:type2 10s linear infinite}
 /* 10 s  prompt   |line 1 0.2-1.2|line 2 1.2-1.9|======= shown =======|back 9.2|
          rule (parcel) leaves the file  |2.0 down 2.8 right 3.2|
-         reply lines 3.2 3.5 3.8 4.1 4.4, teal tokens with them, "25 words" 4.7
+         reply lines 3.2 3.5 3.8 4.1 4.4, teal tokens with them, "37 words" 4.7
          what Concise adds: bars 4.6 + .25 each, grey tokens with them; each dims 2.2 s after it lands */
 @keyframes rule{0%,20%{transform:translate(0,0);opacity:0}22%{opacity:1}28%{transform:translate(0,122px);opacity:1}32%{transform:translate(48px,122px);opacity:1}34%,100%{transform:translate(48px,122px);opacity:0}}
 @keyframes ghost{0%{opacity:0}3%,22%{opacity:1}28%,96%{opacity:.3}100%{opacity:0}}
@@ -54,19 +54,19 @@ accent #4FD1C5 #0B7A70
 <g id="backdrop"><rect class="drift" x="-24" y="-24" width="1328" height="688" fill="url(#dots)"/></g>
 <g id="logo" transform="translate(55 42.2) scale(.46)"><g stroke="$ink" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"><polyline points="63,36 43,36 43,124 63,124"/><polyline points="97,36 117,36 117,124 97,124"/></g><rect class="breathe" x="69" y="69" width="22" height="22" rx="5" fill="$accent"/></g>
 <text id="name" x="126" y="92" class="b" font-size="34" fill="$ink">sharur</text>
-<text id="tagline" class="b" font-size="44" letter-spacing="-1" fill="$ink"><tspan x="72" y="196">Shorter replies.</tspan><tspan x="72" y="248" fill="$accent">Up to 48% fewer tokens.</tspan></text>
-<text id="about" class="s" font-size="20" fill="$body"><tspan x="72" y="302">A one-line output style for Claude Code.</tspan><tspan x="72" y="330">Up to 77% fewer words to read in each reply.</tspan></text>
+<text id="tagline" class="b" font-size="44" letter-spacing="-1" fill="$ink"><tspan x="72" y="196">Shorter replies.</tspan><tspan x="72" y="248" fill="$accent">21% cheaper day to day.</tspan></text>
+<text id="about" class="s" font-size="20" fill="$body"><tspan x="72" y="302">A short output style for Claude Code.</tspan><tspan x="72" y="330">Same tests passed, same facts kept.</tspan></text>
 <g id="facts">
-<text x="72" y="434" class="b" font-size="30" fill="$accent">−48%</text><rect x="72" y="448" width="100" height="6" rx="3" fill="$line"/><rect x="72" y="448" width="48" height="6" rx="3" fill="$accent"/><text x="72" y="478" class="m" font-size="14" fill="$muted">Fable 5.2</text>
-<text x="198" y="434" class="b" font-size="30" fill="$ink">−35%</text><rect x="198" y="448" width="100" height="6" rx="3" fill="$line"/><rect x="198" y="448" width="35" height="6" rx="3" fill="$ink"/><text x="198" y="478" class="m" font-size="14" fill="$muted">Sonnet 5.5</text>
-<text x="324" y="434" class="b" font-size="30" fill="$ink">−33%</text><rect x="324" y="448" width="100" height="6" rx="3" fill="$line"/><rect x="324" y="448" width="33" height="6" rx="3" fill="$ink"/><text x="324" y="478" class="m" font-size="14" fill="$muted">Haiku 5.5</text>
-<text x="450" y="434" class="b" font-size="30" fill="$ink">−29%</text><rect x="450" y="448" width="100" height="6" rx="3" fill="$line"/><rect x="450" y="448" width="29" height="6" rx="3" fill="$ink"/><text x="450" y="478" class="m" font-size="14" fill="$muted">Opus 5.5</text>
-<text x="72" y="514" class="m" font-size="14" fill="$muted">output tokens per task, against Concise</text>
+<text x="72" y="434" class="b" font-size="30" fill="$accent">−21%</text><rect x="72" y="448" width="100" height="6" rx="3" fill="$line"/><rect x="72" y="448" width="21" height="6" rx="3" fill="$accent"/><text x="72" y="478" class="m" font-size="14" fill="$muted">medium</text>
+<text x="198" y="434" class="b" font-size="30" fill="$ink">−10%</text><rect x="198" y="448" width="100" height="6" rx="3" fill="$line"/><rect x="198" y="448" width="10" height="6" rx="3" fill="$ink"/><text x="198" y="478" class="m" font-size="14" fill="$muted">large</text>
+<text x="324" y="434" class="b" font-size="30" fill="$ink">−6%</text><rect x="324" y="448" width="100" height="6" rx="3" fill="$line"/><rect x="324" y="448" width="6" height="6" rx="3" fill="$ink"/><text x="324" y="478" class="m" font-size="14" fill="$muted">huge</text>
+<text x="450" y="434" class="b" font-size="30" fill="$ink">−12%</text><rect x="450" y="448" width="100" height="6" rx="3" fill="$line"/><rect x="450" y="448" width="12" height="6" rx="3" fill="$ink"/><text x="450" y="478" class="m" font-size="14" fill="$muted">average</text>
+<text x="72" y="514" class="m" font-size="14" fill="$muted">cost per task against Concise, Opus 5.5</text>
 </g>
 <g id="ticker"><rect x="0" y="596" width="1280" height="44" fill="$panel"/><rect x="0" y="596" width="1280" height="1.5" fill="$line"/>
 <g clip-path="url(#band)"><g class="tick" fill="$ink">
-<text x="24.0" y="623" class="m" font-size="14" xml:space="preserve"><tspan fill="$ink">Fable 5.2 </tspan><tspan fill="$accent">−77% words · −28% cost · −38% tool calls      </tspan><tspan fill="$ink">Opus 5.5 </tspan><tspan fill="$accent">−76% words · −23% cost      </tspan><tspan fill="$ink">plain questions on Opus 5.5 </tspan><tspan fill="$accent">357 → 63 tokens      </tspan><tspan fill="$ink">every request </tspan><tspan fill="$accent">379 fewer input tokens      </tspan><tspan fill="$ink">tested with </tspan><tspan fill="$accent">9 prompts on 4 models      </tspan><tspan fill="$ink">install </tspan><tspan fill="$accent">one small file      </tspan><tspan fill="$ink">licence </tspan><tspan fill="$accent">MIT      </tspan></text>
-<text x="2275.2" y="623" class="m" font-size="14" xml:space="preserve"><tspan fill="$ink">Fable 5.2 </tspan><tspan fill="$accent">−77% words · −28% cost · −38% tool calls      </tspan><tspan fill="$ink">Opus 5.5 </tspan><tspan fill="$accent">−76% words · −23% cost      </tspan><tspan fill="$ink">plain questions on Opus 5.5 </tspan><tspan fill="$accent">357 → 63 tokens      </tspan><tspan fill="$ink">every request </tspan><tspan fill="$accent">379 fewer input tokens      </tspan><tspan fill="$ink">tested with </tspan><tspan fill="$accent">9 prompts on 4 models      </tspan><tspan fill="$ink">install </tspan><tspan fill="$accent">one small file      </tspan><tspan fill="$ink">licence </tspan><tspan fill="$accent">MIT      </tspan></text>
+<text x="24.0" y="623" class="m" font-size="14" xml:space="preserve"><tspan fill="$ink">medium tasks </tspan><tspan fill="$accent">−21% cost · −54% words      </tspan><tspan fill="$ink">large tasks </tspan><tspan fill="$accent">−10% cost      </tspan><tspan fill="$ink">huge task </tspan><tspan fill="$accent">−6% cost      </tspan><tspan fill="$ink">short questions </tspan><tspan fill="$accent">−37% cost      </tspan><tspan fill="$ink">hidden tests </tspan><tspan fill="$accent">all passed with both styles      </tspan><tspan fill="$ink">every request </tspan><tspan fill="$accent">331 fewer input tokens      </tspan><tspan fill="$ink">tested with </tspan><tspan fill="$accent">13 tasks, 3 runs each, Opus 5.5      </tspan><tspan fill="$ink">install </tspan><tspan fill="$accent">one small file      </tspan><tspan fill="$ink">licence </tspan><tspan fill="$accent">MIT      </tspan></text>
+<text x="2586.0" y="623" class="m" font-size="14" xml:space="preserve"><tspan fill="$ink">medium tasks </tspan><tspan fill="$accent">−21% cost · −54% words      </tspan><tspan fill="$ink">large tasks </tspan><tspan fill="$accent">−10% cost      </tspan><tspan fill="$ink">huge task </tspan><tspan fill="$accent">−6% cost      </tspan><tspan fill="$ink">short questions </tspan><tspan fill="$accent">−37% cost      </tspan><tspan fill="$ink">hidden tests </tspan><tspan fill="$accent">all passed with both styles      </tspan><tspan fill="$ink">every request </tspan><tspan fill="$accent">331 fewer input tokens      </tspan><tspan fill="$ink">tested with </tspan><tspan fill="$accent">13 tasks, 3 runs each, Opus 5.5      </tspan><tspan fill="$ink">install </tspan><tspan fill="$accent">one small file      </tspan><tspan fill="$ink">licence </tspan><tspan fill="$accent">MIT      </tspan></text>
 </g></g></g>
 <g id="stage">
 <path d="M620 48H740L780 88V280a16 16 0 0 1-16 16H620a16 16 0 0 1-16-16V64a16 16 0 0 1 16-16z" fill="$panel" stroke="$accent" stroke-width="2"/>
@@ -74,7 +74,7 @@ accent #4FD1C5 #0B7A70
 <text x="624" y="90" class="m" font-size="16" fill="$accent">sharur.md</text>
 <rect x="624" y="104" width="136" height="1.5" fill="$line"/>
 <rect class="mark" style="animation-delay:-0s" x="614" y="124" width="4" height="22" rx="2" fill="$accent"/>
-<text x="628" y="140" class="m nl" font-size="16" fill="$ink">Caveman.</text>
+<text x="628" y="140" class="m nl" font-size="16" fill="$ink">Telegraphic.</text>
 <rect class="mark" style="animation-delay:-1s" x="614" y="154" width="4" height="22" rx="2" fill="$accent"/>
 <text x="628" y="170" class="m nl" font-size="16" fill="$ink">&lt;=2 lines,</text>
 <rect class="mark" style="animation-delay:-2s" x="614" y="184" width="4" height="22" rx="2" fill="$accent"/>
@@ -86,16 +86,16 @@ accent #4FD1C5 #0B7A70
 <rect x="812" y="48" width="420" height="524" rx="16" fill="$panel" stroke="$line" stroke-width="1.5"/>
 <circle cx="836" cy="68" r="5" fill="$ghost"/><circle cx="854" cy="68" r="5" fill="$ghost"/><circle cx="872" cy="68" r="5" fill="$ghost"/><rect x="1132" y="63" width="76" height="10" rx="5" fill="$line"/>
 <path d="M830 106l7 5.5-7 5.5" fill="none" stroke="$accent" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="850" y="112" class="m" font-size="16" fill="$ink">What's the difference between</text>
-<text x="850" y="138" class="m" font-size="16" fill="$ink">git rebase and git merge?</text>
-<g clip-path="url(#row1)"><g class="type1"><rect x="1128.4" y="95" width="292.4" height="24" fill="$panel"/><g class="c1" opacity="0"><rect class="caret" x="1130.4" y="97" width="9" height="19" fill="$accent"/></g></g></g><g clip-path="url(#row2)"><g class="type2"><rect x="1090.0" y="121" width="254.0" height="24" fill="$panel"/><g class="c2"><rect class="caret" x="1092.0" y="123" width="9" height="19" fill="$accent"/></g></g></g>
+<text x="850" y="112" class="m" font-size="16" fill="$ink">Add a multiply function to calc.py</text>
+<text x="850" y="138" class="m" font-size="16" fill="$ink">with a test, and run the tests.</text>
+<g clip-path="url(#row1)"><g class="type1"><rect x="1176.4" y="95" width="340.4" height="24" fill="$panel"/><g class="c1" opacity="0"><rect class="caret" x="1178.4" y="97" width="9" height="19" fill="$accent"/></g></g></g><g clip-path="url(#row2)"><g class="type2"><rect x="1147.6" y="121" width="311.6" height="24" fill="$panel"/><g class="c2"><rect class="caret" x="1149.6" y="123" width="9" height="19" fill="$accent"/></g></g></g>
 <rect x="830" y="156" width="384" height="1.5" fill="$line"/>
-<text class="m in" style="animation-delay:-6.80s" x="830" y="188" font-size="16" fill="$ink">Merge: joins branches with merge commit,</text>
-<text class="m in" style="animation-delay:-6.50s" x="830" y="213" font-size="16" fill="$ink">keeps true history. Rebase: replays your</text>
-<text class="m in" style="animation-delay:-6.20s" x="830" y="238" font-size="16" fill="$ink">commits onto new base, linear history,</text>
-<text class="m in" style="animation-delay:-5.90s" x="830" y="263" font-size="16" fill="$ink">rewrites hashes — avoid on shared</text>
-<text class="m in" style="animation-delay:-5.60s" x="830" y="288" font-size="16" fill="$ink">branches.</text>
-<g transform="translate(1110 278)"><g class="on" style="animation-delay:-5.30s"><rect x="0" y="0" width="104" height="28" rx="8" fill="$panel" stroke="$accent" stroke-width="1.5"/><text x="52.0" y="19" class="m" font-size="14" fill="$accent" text-anchor="middle">25 words</text></g></g>
+<text class="m in" style="animation-delay:-6.80s" x="830" y="188" font-size="16" fill="$ink">Added multiply to calc.py and a test,</text>
+<text class="m in" style="animation-delay:-6.50s" x="830" y="213" font-size="16" fill="$ink">but the tests fail first at assert</text>
+<text class="m in" style="animation-delay:-6.20s" x="830" y="238" font-size="16" fill="$ink">subtract(5, 3) == 2, so the multiply</text>
+<text class="m in" style="animation-delay:-5.90s" x="830" y="263" font-size="16" fill="$ink">test never ran. subtract returns a + b;</text>
+<text class="m in" style="animation-delay:-5.60s" x="830" y="288" font-size="16" fill="$ink">should I change it to a - b?</text>
+<g transform="translate(1110 278)"><g class="on" style="animation-delay:-5.30s"><rect x="0" y="0" width="104" height="28" rx="8" fill="$panel" stroke="$accent" stroke-width="1.5"/><text x="52.0" y="19" class="m" font-size="14" fill="$accent" text-anchor="middle">37 words</text></g></g>
 <path class="flow" d="M830 322H1214" fill="none" stroke="$accent" stroke-width="2" stroke-dasharray="8 16"/>
 <path d="M804 314l9 8-9 8M1214 314v16" fill="none" stroke="$accent" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 <rect class="ghost" style="animation-delay:-5.40s" x="830" y="346" width="96" height="10" rx="4" fill="$muted"/>
@@ -108,52 +108,52 @@ accent #4FD1C5 #0B7A70
 <rect class="ghost" style="animation-delay:-3.65s" x="830" y="501.4" width="356" height="8" rx="4" fill="$ghost"/>
 <rect class="ghost" style="animation-delay:-3.40s" x="830" y="522.4" width="200" height="8" rx="4" fill="$ghost"/>
 <rect class="ghost" style="animation-delay:-3.15s" x="830" y="543.4" width="180" height="8" rx="4" fill="$ghost"/>
-<rect x="1050" y="524" width="164" height="28" rx="8" fill="$panel" stroke="$line" stroke-width="1.5"/><text x="1132.0" y="543" class="m" font-size="14" fill="$muted" text-anchor="middle">Concise 203 words</text>
+<rect x="1050" y="524" width="164" height="28" rx="8" fill="$panel" stroke="$line" stroke-width="1.5"/><text x="1132.0" y="543" class="m" font-size="14" fill="$muted" text-anchor="middle">Concise 89 words</text>
 <rect x="604" y="316" width="176" height="256" rx="14" fill="$panel" stroke="$line" stroke-width="1.5"/>
 <text x="622" y="346" class="m" font-size="16" fill="$muted">tokens</text>
 <rect class="on" style="animation-delay:-6.80s" x="622" y="362" width="14" height="14" rx="3.5" fill="$accent"/>
-<rect class="on" style="animation-delay:-6.56s" x="642" y="362" width="14" height="14" rx="3.5" fill="$accent"/>
-<rect class="on" style="animation-delay:-6.32s" x="662" y="362" width="14" height="14" rx="3.5" fill="$accent"/>
-<rect class="on" style="animation-delay:-6.08s" x="682" y="362" width="14" height="14" rx="3.5" fill="$accent"/>
-<rect class="on" style="animation-delay:-5.84s" x="702" y="362" width="14" height="14" rx="3.5" fill="$accent"/>
-<rect class="on" style="animation-delay:-5.60s" x="722" y="362" width="14" height="14" rx="3.5" fill="$accent"/>
-<rect class="ghost" style="animation-delay:-5.40s" x="742" y="362" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-5.34s" x="622" y="382" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-5.27s" x="642" y="382" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-5.21s" x="662" y="382" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-5.14s" x="682" y="382" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-5.08s" x="702" y="382" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-5.02s" x="722" y="382" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.95s" x="742" y="382" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.89s" x="622" y="402" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.82s" x="642" y="402" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.76s" x="662" y="402" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.70s" x="682" y="402" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.63s" x="702" y="402" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.57s" x="722" y="402" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.50s" x="742" y="402" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.44s" x="622" y="422" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.38s" x="642" y="422" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.31s" x="662" y="422" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.25s" x="682" y="422" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.18s" x="702" y="422" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.12s" x="722" y="422" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-4.06s" x="742" y="422" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-3.99s" x="622" y="442" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-3.93s" x="642" y="442" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-3.86s" x="662" y="442" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-3.80s" x="682" y="442" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-3.74s" x="702" y="442" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-3.67s" x="722" y="442" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-3.61s" x="742" y="442" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-3.54s" x="622" y="462" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-3.48s" x="642" y="462" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-3.42s" x="662" y="462" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-3.35s" x="682" y="462" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect class="ghost" style="animation-delay:-3.29s" x="702" y="462" width="14" height="14" rx="3.5" fill="$muted"/>
+<rect class="on" style="animation-delay:-6.75s" x="642" y="362" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.70s" x="662" y="362" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.66s" x="682" y="362" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.61s" x="702" y="362" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.56s" x="722" y="362" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.51s" x="742" y="362" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.46s" x="622" y="382" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.42s" x="642" y="382" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.37s" x="662" y="382" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.32s" x="682" y="382" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.27s" x="702" y="382" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.22s" x="722" y="382" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.18s" x="742" y="382" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.13s" x="622" y="402" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.08s" x="642" y="402" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-6.03s" x="662" y="402" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-5.98s" x="682" y="402" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-5.94s" x="702" y="402" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-5.89s" x="722" y="402" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-5.84s" x="742" y="402" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-5.79s" x="622" y="422" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-5.74s" x="642" y="422" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-5.70s" x="662" y="422" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-5.65s" x="682" y="422" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="on" style="animation-delay:-5.60s" x="702" y="422" width="14" height="14" rx="3.5" fill="$accent"/>
+<rect class="ghost" style="animation-delay:-5.40s" x="722" y="422" width="14" height="14" rx="3.5" fill="$muted"/>
+<rect class="ghost" style="animation-delay:-5.24s" x="742" y="422" width="14" height="14" rx="3.5" fill="$muted"/>
+<rect class="ghost" style="animation-delay:-5.09s" x="622" y="442" width="14" height="14" rx="3.5" fill="$muted"/>
+<rect class="ghost" style="animation-delay:-4.93s" x="642" y="442" width="14" height="14" rx="3.5" fill="$muted"/>
+<rect class="ghost" style="animation-delay:-4.78s" x="662" y="442" width="14" height="14" rx="3.5" fill="$muted"/>
+<rect class="ghost" style="animation-delay:-4.62s" x="682" y="442" width="14" height="14" rx="3.5" fill="$muted"/>
+<rect class="ghost" style="animation-delay:-4.47s" x="702" y="442" width="14" height="14" rx="3.5" fill="$muted"/>
+<rect class="ghost" style="animation-delay:-4.31s" x="722" y="442" width="14" height="14" rx="3.5" fill="$muted"/>
+<rect class="ghost" style="animation-delay:-4.15s" x="742" y="442" width="14" height="14" rx="3.5" fill="$muted"/>
+<rect class="ghost" style="animation-delay:-4.00s" x="622" y="462" width="14" height="14" rx="3.5" fill="$muted"/>
+<rect class="ghost" style="animation-delay:-3.84s" x="642" y="462" width="14" height="14" rx="3.5" fill="$muted"/>
+<rect class="ghost" style="animation-delay:-3.69s" x="662" y="462" width="14" height="14" rx="3.5" fill="$muted"/>
+<rect class="ghost" style="animation-delay:-3.53s" x="682" y="462" width="14" height="14" rx="3.5" fill="$muted"/>
+<rect class="ghost" style="animation-delay:-3.38s" x="702" y="462" width="14" height="14" rx="3.5" fill="$muted"/>
 <rect class="ghost" style="animation-delay:-3.22s" x="722" y="462" width="14" height="14" rx="3.5" fill="$muted"/>
-<rect x="622" y="500" width="14" height="14" rx="3.5" fill="$accent"/><text x="646" y="513" class="m" font-size="16" fill="$accent">58</text>
-<rect x="622" y="530" width="14" height="14" rx="3.5" fill="$muted"/><text x="646" y="543" class="m" font-size="16" fill="$muted">413</text>
+<rect x="622" y="500" width="14" height="14" rx="3.5" fill="$accent"/><text x="646" y="513" class="m" font-size="16" fill="$accent">1,012</text>
+<rect x="622" y="530" width="14" height="14" rx="3.5" fill="$muted"/><text x="646" y="543" class="m" font-size="16" fill="$muted">1,619</text>
 <g transform="translate(784 188)"><rect class="rule" opacity="0" width="24" height="24" rx="6" fill="$accent"/></g>
 </g>
 </svg>
