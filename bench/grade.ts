@@ -1,4 +1,4 @@
-// usage: node grade.ts  -> grades every out/*.jsonl lacking out/*.grade.json
+// usage: node grade.ts  -> grades every out/*.jsonl three times (out/*.grade.json, .grade2.json, .grade3.json); readers take the majority
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
@@ -12,7 +12,9 @@ const gdir = path.join(here, 'grader'); fs.mkdirSync(gdir, { recursive: true });
 const jobs: { g: string; q: string }[] = [];
 for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.jsonl'))) {
   const m = f.match(/^(.+)_p(\d+)_r(\d+)\.jsonl$/); if (!m || !rub[m[2]]) continue;
-  const g = path.join(dir, f.replace('.jsonl', '.grade.json')); if (fs.existsSync(g)) continue;
+  const G = process.env.GRADER || 'haiku', tag = G === 'haiku' ? 'grade' : `grade-${G}`;
+  if (process.env.ONLY && !f.startsWith(process.env.ONLY)) continue;
+  for (const suf of [`.${tag}.json`, `.${tag}2.json`, `.${tag}3.json`]) { const g = path.join(dir, f.replace('.jsonl', suf)); if (fs.existsSync(g)) continue;
   let text = '';
   for (const j of events(fs.readFileSync(path.join(dir, f), 'utf8')))
     if (j.type === 'assistant') for (const c of j.message.content) if (c.type === 'text') text += c.text + '\n';
@@ -26,15 +28,17 @@ For each criterion decide if the reply clearly conveys it (true/false):
 ${rub[m[2]].map((c, i) => `${i + 1}. ${c}`).join('\n')}
 
 Also: "clear" = can a developer understand the reply without guessing at garbled words or ambiguous shorthand (true/false).
-Output ONLY JSON: {"criteria":[true,...],"clear":true}`;
-  jobs.push({ g, q });
+Output ONLY JSON: {"criteria":[true,...],"clear":true,"why":"if not clear, the phrase that forced a guess, else empty"}`;
+  jobs.push({ g, q }); }
 }
 let i = 0;
 function next(): void {
   if (i >= jobs.length) return; const { g, q } = jobs[i++];
-  const p = spawn('claude -p --model haiku --setting-sources project --no-session-persistence --system-prompt "You are a strict grader. Output only JSON."', { shell: true, cwd: gdir });
+  const p = spawn(`claude -p --model ${process.env.GRADER || 'haiku'} --setting-sources project --no-session-persistence --system-prompt "You are a strict grader. Output only JSON."`,{ shell: true, cwd: gdir });
   let o = ''; p.stdout.on('data', (d: Buffer) => o += d);
-  p.on('close', () => { const m = o.match(/\{[\s\S]*\}/); if (m) try { JSON.parse(m[0]); fs.writeFileSync(g, m[0]) } catch { } next() });
+  p.on('close', () => { // Haiku sometimes corrects itself mid-reply: keep the last parseable grade object.
+    const last = (o.match(/\{[^{}]*\}/g) || []).reverse().find(x => { try { return Array.isArray(JSON.parse(x).criteria) } catch { return false } });
+    if (last) fs.writeFileSync(g, last); next() });
   p.stdin.end(q);
 }
 for (let k = 0; k < 10; k++) next();
