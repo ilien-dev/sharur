@@ -1,0 +1,8 @@
+- The style text lives in `sharur.md`, `README.md`, `README.es.md` and `BENCHMARKS.md`: change all four together.
+- `README.es.md` is the Spanish translation of `README.md`, with the same sections and lines; update both in the same commit.
+- Headline numbers (cost, words) also appear in the alt text of `assets/hero-*.svg` and `assets/hero.src.svg`; keep them equal to `results/runs-v2.json` as printed by `node bench/summarize-v2.cjs`.
+- `npm run typecheck` checks `bench/*.ts` only; run them with plain `node` (Node >=22.18 strips types), no build step.
+- `bench/matrix.sh` and `bench/one.sh` launch real `claude -p` sessions and spend money; do not run them without asking.
+- Never commit `bench/out*/` or `bench/runs*/`: their logs list this machine's plugins and paths. Published data goes in `results/`.
+- `BENCHMARKS.md` — read before changing the benchmark, the prompts in `bench/prompts.txt` or `bench/rubrics.json`.
+- Work on a branch and merge through a PR; commit subjects are one plain sentence in the imperative, no prefix.
